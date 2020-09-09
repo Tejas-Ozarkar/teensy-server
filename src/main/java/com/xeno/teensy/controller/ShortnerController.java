@@ -3,7 +3,7 @@ package com.xeno.teensy.controller;
 
 import java.util.List;
 
-import com.xeno.teensy.entity.Url;
+import com.xeno.teensy.jooq.sample.model.tables.pojos.Url;
 import com.xeno.teensy.service.ShortnerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,6 @@ public class ShortnerController {
     @PostMapping
     public String postUrl(@RequestBody Url url){
         service.saveUrl(url);
-        return "Url Added";
+        return "Url Added2";
     }
 }

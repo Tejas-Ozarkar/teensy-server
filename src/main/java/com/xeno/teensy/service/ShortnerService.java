@@ -2,9 +2,10 @@ package com.xeno.teensy.service;
 
 import java.util.List;
 
-import com.xeno.teensy.entity.Url;
-import com.xeno.teensy.repository.ShortnerRepository;
+import com.xeno.teensy.jooq.sample.model.Tables;
+import com.xeno.teensy.jooq.sample.model.tables.pojos.*;
 
+import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,13 +13,20 @@ import org.springframework.stereotype.Service;
 public class ShortnerService {
 
     @Autowired
-    ShortnerRepository shortnerRepository;
+    DSLContext context;
+
 
     public void saveUrl(Url url){
-        shortnerRepository.save(url);
+        System.out.println("Adding URL"+url) ;
+        context.insertInto(Tables.URL,Tables.URL.LONGURL
+        ,Tables.URL.SHORTURL)
+                .values(url.getLongurl(), url.getShorturl())
+        .execute();
     }
 
     public List<Url> getUrls(){
-        return shortnerRepository.findAll();
+        return context
+                .selectFrom(Tables.URL)
+                .fetchInto(Url.class);
     }
 }
