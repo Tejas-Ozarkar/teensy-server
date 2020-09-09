@@ -1,6 +1,2 @@
 /home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/TeensyApplication.java
-/home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/repository/ShortnerRepository.java
-/home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/entity/Url.java
-/home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/controller/ShortnerController.java
-/home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/service/ShortenerService.java
 /home/tej/docker/teensy/teensy/src/main/java/com/xeno/teensy/controller/TestController.java
