@@ -34,4 +34,11 @@ public class MyUserDetailsService implements UserDetailsService {
                 .fetchOneInto(User.class);
     }
 
+    public void signupUser(User user){
+        context.insertInto(Tables.USER,Tables.USER.FIRSTNAME,Tables.USER.LASTNAME,
+                Tables.USER.EMAIL,Tables.USER.USERNAME, Tables.USER.PASSWORD)
+                .values(user.getFirstname(),user.getLastname(),user.getEmail(),user.getUsername(),user.getPassword())
+                .execute();
+    }
+
 }

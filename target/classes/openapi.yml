@@ -1,0 +1,116 @@
+openapi: 3.0.1
+info:
+  title: Teensy
+  description: Tiny Url Generator
+  version: 1.0.0
+servers:
+  - url: /v2
+paths:
+  /url:
+    get:
+      security:
+        - bearerAuth: [ ]
+      summary: Get All Tiny Urls
+      operationId: getUrls
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UrlDto'
+    post:
+      summary:
+      operationId: createTinyUrl
+      requestBody:
+        description: Create Tiny Url
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UrlDto'
+        required: true
+      responses:
+        200:
+          description: Url Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /auth/signup:
+    post:
+      summary:
+      operationId: signup
+      requestBody:
+        description: Create new user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDto'
+        required: true
+      responses:
+        200:
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /auth/signin:
+    post:
+      summary:
+      operationId: signin
+      requestBody:
+        description: Logging in user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+        required: true
+      responses:
+        200:
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+components:
+  schemas:
+    UrlDto:
+      type: object
+      properties:
+        shorturl:
+          type: string
+        longurl:
+          type: string
+    AuthRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+    UserDto:
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        message:
+          type: string
