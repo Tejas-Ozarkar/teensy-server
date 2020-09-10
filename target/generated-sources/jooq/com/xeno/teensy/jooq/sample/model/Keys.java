@@ -4,13 +4,22 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
+import com.xeno.teensy.jooq.sample.model.tables.Tribe;
+import com.xeno.teensy.jooq.sample.model.tables.TribeAdmin;
 import com.xeno.teensy.jooq.sample.model.tables.Url;
+import com.xeno.teensy.jooq.sample.model.tables.User;
+import com.xeno.teensy.jooq.sample.model.tables.records.CardRecord;
 import com.xeno.teensy.jooq.sample.model.tables.records.FlywaySchemaHistoryRecord;
+import com.xeno.teensy.jooq.sample.model.tables.records.TribeAdminRecord;
+import com.xeno.teensy.jooq.sample.model.tables.records.TribeRecord;
 import com.xeno.teensy.jooq.sample.model.tables.records.UrlRecord;
+import com.xeno.teensy.jooq.sample.model.tables.records.UserRecord;
 
 import javax.annotation.processing.Generated;
 
+import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
@@ -34,30 +43,59 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<CardRecord, Integer> IDENTITY_CARD = Identities0.IDENTITY_CARD;
+    public static final Identity<TribeRecord, Integer> IDENTITY_TRIBE = Identities0.IDENTITY_TRIBE;
+    public static final Identity<TribeAdminRecord, Integer> IDENTITY_TRIBE_ADMIN = Identities0.IDENTITY_TRIBE_ADMIN;
     public static final Identity<UrlRecord, Integer> IDENTITY_URL = Identities0.IDENTITY_URL;
+    public static final Identity<UserRecord, Integer> IDENTITY_USER = Identities0.IDENTITY_USER;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = UniqueKeys0.KEY_CARD_PRIMARY;
     public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = UniqueKeys0.KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY;
+    public static final UniqueKey<TribeRecord> KEY_TRIBE_PRIMARY = UniqueKeys0.KEY_TRIBE_PRIMARY;
+    public static final UniqueKey<TribeAdminRecord> KEY_TRIBE_ADMIN_PRIMARY = UniqueKeys0.KEY_TRIBE_ADMIN_PRIMARY;
     public static final UniqueKey<UrlRecord> KEY_URL_PRIMARY = UniqueKeys0.KEY_URL_PRIMARY;
+    public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = UniqueKeys0.KEY_USER_PRIMARY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = ForeignKeys0.CARD_IBFK_1;
+    public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = ForeignKeys0.TRIBE_IBFK_1;
+    public static final ForeignKey<TribeAdminRecord, UserRecord> TRIBE_ADMIN_IBFK_1 = ForeignKeys0.TRIBE_ADMIN_IBFK_1;
+    public static final ForeignKey<TribeAdminRecord, TribeRecord> TRIBE_ADMIN_IBFK_2 = ForeignKeys0.TRIBE_ADMIN_IBFK_2;
+    public static final ForeignKey<UrlRecord, UserRecord> URL_IBFK_1 = ForeignKeys0.URL_IBFK_1;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
     private static class Identities0 {
+        public static Identity<CardRecord, Integer> IDENTITY_CARD = Internal.createIdentity(Card.CARD, Card.CARD.ID);
+        public static Identity<TribeRecord, Integer> IDENTITY_TRIBE = Internal.createIdentity(Tribe.TRIBE, Tribe.TRIBE.ID);
+        public static Identity<TribeAdminRecord, Integer> IDENTITY_TRIBE_ADMIN = Internal.createIdentity(TribeAdmin.TRIBE_ADMIN, TribeAdmin.TRIBE_ADMIN.ID);
         public static Identity<UrlRecord, Integer> IDENTITY_URL = Internal.createIdentity(Url.URL, Url.URL.ID);
+        public static Identity<UserRecord, Integer> IDENTITY_USER = Internal.createIdentity(User.USER, User.USER.ID);
     }
 
     private static class UniqueKeys0 {
+        public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = Internal.createUniqueKey(Card.CARD, "KEY_card_PRIMARY", Card.CARD.ID);
         public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, "KEY_flyway_schema_history_PRIMARY", FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK);
+        public static final UniqueKey<TribeRecord> KEY_TRIBE_PRIMARY = Internal.createUniqueKey(Tribe.TRIBE, "KEY_tribe_PRIMARY", Tribe.TRIBE.ID);
+        public static final UniqueKey<TribeAdminRecord> KEY_TRIBE_ADMIN_PRIMARY = Internal.createUniqueKey(TribeAdmin.TRIBE_ADMIN, "KEY_tribe_admin_PRIMARY", TribeAdmin.TRIBE_ADMIN.ID);
         public static final UniqueKey<UrlRecord> KEY_URL_PRIMARY = Internal.createUniqueKey(Url.URL, "KEY_url_PRIMARY", Url.URL.ID);
+        public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, "KEY_user_PRIMARY", User.USER.ID);
+    }
+
+    private static class ForeignKeys0 {
+        public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_URL_PRIMARY, Card.CARD, "card_ibfk_1", Card.CARD.URLID);
+        public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, Tribe.TRIBE, "tribe_ibfk_1", Tribe.TRIBE.USERID);
+        public static final ForeignKey<TribeAdminRecord, UserRecord> TRIBE_ADMIN_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, TribeAdmin.TRIBE_ADMIN, "tribe_admin_ibfk_1", TribeAdmin.TRIBE_ADMIN.USERID);
+        public static final ForeignKey<TribeAdminRecord, TribeRecord> TRIBE_ADMIN_IBFK_2 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_TRIBE_PRIMARY, TribeAdmin.TRIBE_ADMIN, "tribe_admin_ibfk_2", TribeAdmin.TRIBE_ADMIN.GROUPID);
+        public static final ForeignKey<UrlRecord, UserRecord> URL_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, Url.URL, "url_ibfk_1", Url.URL.USERID);
     }
 }

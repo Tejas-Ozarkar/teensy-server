@@ -4,8 +4,12 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
+import com.xeno.teensy.jooq.sample.model.tables.Tribe;
+import com.xeno.teensy.jooq.sample.model.tables.TribeAdmin;
 import com.xeno.teensy.jooq.sample.model.tables.Url;
+import com.xeno.teensy.jooq.sample.model.tables.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Teensy extends SchemaImpl {
 
-    private static final long serialVersionUID = -1432899360;
+    private static final long serialVersionUID = -1987557570;
 
     /**
      * The reference instance of <code>teensy</code>
@@ -39,14 +43,34 @@ public class Teensy extends SchemaImpl {
     public static final Teensy TEENSY = new Teensy();
 
     /**
+     * The table <code>teensy.card</code>.
+     */
+    public final Card CARD = com.xeno.teensy.jooq.sample.model.tables.Card.CARD;
+
+    /**
      * The table <code>teensy.flyway_schema_history</code>.
      */
     public final FlywaySchemaHistory FLYWAY_SCHEMA_HISTORY = com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY;
 
     /**
+     * The table <code>teensy.tribe</code>.
+     */
+    public final Tribe TRIBE = com.xeno.teensy.jooq.sample.model.tables.Tribe.TRIBE;
+
+    /**
+     * The table <code>teensy.tribe_admin</code>.
+     */
+    public final TribeAdmin TRIBE_ADMIN = com.xeno.teensy.jooq.sample.model.tables.TribeAdmin.TRIBE_ADMIN;
+
+    /**
      * The table <code>teensy.url</code>.
      */
     public final Url URL = com.xeno.teensy.jooq.sample.model.tables.Url.URL;
+
+    /**
+     * The table <code>teensy.user</code>.
+     */
+    public final User USER = com.xeno.teensy.jooq.sample.model.tables.User.USER;
 
     /**
      * No further instances allowed
@@ -70,7 +94,11 @@ public class Teensy extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Card.CARD,
             FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
-            Url.URL);
+            Tribe.TRIBE,
+            TribeAdmin.TRIBE_ADMIN,
+            Url.URL,
+            User.USER);
     }
 }

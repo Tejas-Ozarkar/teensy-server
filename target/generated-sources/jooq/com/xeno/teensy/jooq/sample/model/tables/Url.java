@@ -20,7 +20,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row3;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Url extends TableImpl<UrlRecord> {
 
-    private static final long serialVersionUID = 1080398618;
+    private static final long serialVersionUID = -1782209108;
 
     /**
      * The reference instance of <code>teensy.url</code>
@@ -71,6 +71,11 @@ public class Url extends TableImpl<UrlRecord> {
      * The column <code>teensy.url.longUrl</code>.
      */
     public final TableField<UrlRecord, String> LONGURL = createField(DSL.name("longUrl"), org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
+
+    /**
+     * The column <code>teensy.url.userid</code>.
+     */
+    public final TableField<UrlRecord, Integer> USERID = createField(DSL.name("userid"), org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>teensy.url</code> table reference
@@ -112,7 +117,7 @@ public class Url extends TableImpl<UrlRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.URL_PRIMARY);
+        return Arrays.<Index>asList(Indexes.URL_PRIMARY, Indexes.URL_USERID);
     }
 
     @Override
@@ -128,6 +133,15 @@ public class Url extends TableImpl<UrlRecord> {
     @Override
     public List<UniqueKey<UrlRecord>> getKeys() {
         return Arrays.<UniqueKey<UrlRecord>>asList(Keys.KEY_URL_PRIMARY);
+    }
+
+    @Override
+    public List<ForeignKey<UrlRecord, ?>> getReferences() {
+        return Arrays.<ForeignKey<UrlRecord, ?>>asList(Keys.URL_IBFK_1);
+    }
+
+    public User user() {
+        return new User(this, Keys.URL_IBFK_1);
     }
 
     @Override
@@ -157,11 +171,11 @@ public class Url extends TableImpl<UrlRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row3 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<Integer, String, String> fieldsRow() {
-        return (Row3) super.fieldsRow();
+    public Row4<Integer, String, String, Integer> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }

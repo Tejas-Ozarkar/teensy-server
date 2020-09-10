@@ -22,11 +22,12 @@ import javax.annotation.processing.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Url implements Serializable {
 
-    private static final long serialVersionUID = 555168758;
+    private static final long serialVersionUID = -2009104368;
 
     private Integer id;
     private String  shorturl;
     private String  longurl;
+    private Integer userid;
 
     public Url() {}
 
@@ -34,16 +35,19 @@ public class Url implements Serializable {
         this.id = value.id;
         this.shorturl = value.shorturl;
         this.longurl = value.longurl;
+        this.userid = value.userid;
     }
 
     public Url(
         Integer id,
         String  shorturl,
-        String  longurl
+        String  longurl,
+        Integer userid
     ) {
         this.id = id;
         this.shorturl = shorturl;
         this.longurl = longurl;
+        this.userid = userid;
     }
 
     public Integer getId() {
@@ -70,6 +74,15 @@ public class Url implements Serializable {
 
     public Url setLongurl(String longurl) {
         this.longurl = longurl;
+        return this;
+    }
+
+    public Integer getUserid() {
+        return this.userid;
+    }
+
+    public Url setUserid(Integer userid) {
+        this.userid = userid;
         return this;
     }
 
@@ -100,6 +113,12 @@ public class Url implements Serializable {
         }
         else if (!longurl.equals(other.longurl))
             return false;
+        if (userid == null) {
+            if (other.userid != null)
+                return false;
+        }
+        else if (!userid.equals(other.userid))
+            return false;
         return true;
     }
 
@@ -110,6 +129,7 @@ public class Url implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.shorturl == null) ? 0 : this.shorturl.hashCode());
         result = prime * result + ((this.longurl == null) ? 0 : this.longurl.hashCode());
+        result = prime * result + ((this.userid == null) ? 0 : this.userid.hashCode());
         return result;
     }
 
@@ -120,6 +140,7 @@ public class Url implements Serializable {
         sb.append(id);
         sb.append(", ").append(shorturl);
         sb.append(", ").append(longurl);
+        sb.append(", ").append(userid);
 
         sb.append(")");
         return sb.toString();

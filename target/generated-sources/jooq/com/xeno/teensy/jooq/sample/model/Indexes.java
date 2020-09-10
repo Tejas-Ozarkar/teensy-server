@@ -4,8 +4,12 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
+import com.xeno.teensy.jooq.sample.model.tables.Tribe;
+import com.xeno.teensy.jooq.sample.model.tables.TribeAdmin;
 import com.xeno.teensy.jooq.sample.model.tables.Url;
+import com.xeno.teensy.jooq.sample.model.tables.User;
 
 import javax.annotation.processing.Generated;
 
@@ -31,17 +35,35 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index CARD_PRIMARY = Indexes0.CARD_PRIMARY;
+    public static final Index CARD_URLID = Indexes0.CARD_URLID;
     public static final Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Indexes0.FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX;
     public static final Index FLYWAY_SCHEMA_HISTORY_PRIMARY = Indexes0.FLYWAY_SCHEMA_HISTORY_PRIMARY;
+    public static final Index TRIBE_PRIMARY = Indexes0.TRIBE_PRIMARY;
+    public static final Index TRIBE_USERID = Indexes0.TRIBE_USERID;
+    public static final Index TRIBE_ADMIN_GROUPID = Indexes0.TRIBE_ADMIN_GROUPID;
+    public static final Index TRIBE_ADMIN_PRIMARY = Indexes0.TRIBE_ADMIN_PRIMARY;
+    public static final Index TRIBE_ADMIN_USERID = Indexes0.TRIBE_ADMIN_USERID;
     public static final Index URL_PRIMARY = Indexes0.URL_PRIMARY;
+    public static final Index URL_USERID = Indexes0.URL_USERID;
+    public static final Index USER_PRIMARY = Indexes0.USER_PRIMARY;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index CARD_PRIMARY = Internal.createIndex("PRIMARY", Card.CARD, new OrderField[] { Card.CARD.ID }, true);
+        public static Index CARD_URLID = Internal.createIndex("urlId", Card.CARD, new OrderField[] { Card.CARD.URLID }, false);
         public static Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex("flyway_schema_history_s_idx", FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);
         public static Index FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createIndex("PRIMARY", FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK }, true);
+        public static Index TRIBE_PRIMARY = Internal.createIndex("PRIMARY", Tribe.TRIBE, new OrderField[] { Tribe.TRIBE.ID }, true);
+        public static Index TRIBE_USERID = Internal.createIndex("userId", Tribe.TRIBE, new OrderField[] { Tribe.TRIBE.USERID }, false);
+        public static Index TRIBE_ADMIN_GROUPID = Internal.createIndex("groupId", TribeAdmin.TRIBE_ADMIN, new OrderField[] { TribeAdmin.TRIBE_ADMIN.GROUPID }, false);
+        public static Index TRIBE_ADMIN_PRIMARY = Internal.createIndex("PRIMARY", TribeAdmin.TRIBE_ADMIN, new OrderField[] { TribeAdmin.TRIBE_ADMIN.ID }, true);
+        public static Index TRIBE_ADMIN_USERID = Internal.createIndex("userId", TribeAdmin.TRIBE_ADMIN, new OrderField[] { TribeAdmin.TRIBE_ADMIN.USERID }, false);
         public static Index URL_PRIMARY = Internal.createIndex("PRIMARY", Url.URL, new OrderField[] { Url.URL.ID }, true);
+        public static Index URL_USERID = Internal.createIndex("userid", Url.URL, new OrderField[] { Url.URL.USERID }, false);
+        public static Index USER_PRIMARY = Internal.createIndex("PRIMARY", User.USER, new OrderField[] { User.USER.ID }, true);
     }
 }
