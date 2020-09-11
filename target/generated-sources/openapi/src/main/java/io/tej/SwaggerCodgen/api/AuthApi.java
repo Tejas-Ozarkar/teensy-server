@@ -7,7 +7,7 @@ package io.tej.SwaggerCodgen.api;
 
 import io.tej.SwaggerCodgen.model.AuthRequest;
 import io.tej.SwaggerCodgen.model.AuthResponse;
-import io.tej.SwaggerCodgen.model.ModelApiResponse;
+import io.tej.SwaggerCodgen.model.GenericResponse;
 import io.tej.SwaggerCodgen.model.UserDto;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T00:49:19.168624400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "auth", description = "the auth API")
@@ -79,19 +79,19 @@ public interface AuthApi {
      * @param userDto Create new user (required)
      * @return User Created (status code 200)
      */
-    @ApiOperation(value = "null", nickname = "signup", notes = "", response = ModelApiResponse.class, tags={  })
+    @ApiOperation(value = "null", nickname = "signup", notes = "", response = GenericResponse.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "User Created", response = ModelApiResponse.class) })
+        @ApiResponse(code = 200, message = "User Created", response = GenericResponse.class) })
     @RequestMapping(value = "/auth/signup",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<ModelApiResponse> _signup(@ApiParam(value = "Create new user" ,required=true )  @Valid @RequestBody UserDto userDto) {
+    default ResponseEntity<GenericResponse> _signup(@ApiParam(value = "Create new user" ,required=true )  @Valid @RequestBody UserDto userDto) {
         return signup(userDto);
     }
 
     // Override this method
-    default  ResponseEntity<ModelApiResponse> signup(UserDto userDto) {
+    default  ResponseEntity<GenericResponse> signup(UserDto userDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

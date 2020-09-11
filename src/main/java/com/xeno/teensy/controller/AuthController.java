@@ -1,21 +1,14 @@
 package com.xeno.teensy.controller;
 
-import com.xeno.teensy.jooq.sample.model.tables.pojos.User;
 import com.xeno.teensy.jwt.JwtUtil;
-import com.xeno.teensy.mapper.UrlMapper;
 import com.xeno.teensy.mapper.UserMapper;
 import com.xeno.teensy.service.MyUserDetailsService;
 import io.tej.SwaggerCodgen.api.AuthApi;
-import io.tej.SwaggerCodgen.model.AuthRequest;
-import io.tej.SwaggerCodgen.model.AuthResponse;
-import io.tej.SwaggerCodgen.model.ModelApiResponse;
-import io.tej.SwaggerCodgen.model.UserDto;
+import io.tej.SwaggerCodgen.model.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +30,9 @@ public class AuthController implements AuthApi {
 
 
     @Override
-    public ResponseEntity<ModelApiResponse> signup(UserDto userDto) {
+    public ResponseEntity<GenericResponse> signup(UserDto userDto) {
         userDetailsService.signupUser(userMapper.toEntity(userDto));
-        return ResponseEntity.ok(new ModelApiResponse().message("User Created"));
+        return ResponseEntity.ok(new GenericResponse().message("User Created"));
     }
 
     @Override

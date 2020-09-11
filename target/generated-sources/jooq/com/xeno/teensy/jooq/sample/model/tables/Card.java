@@ -20,7 +20,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Card extends TableImpl<CardRecord> {
 
-    private static final long serialVersionUID = 379649512;
+    private static final long serialVersionUID = 957675930;
 
     /**
      * The reference instance of <code>teensy.card</code>
@@ -71,6 +71,11 @@ public class Card extends TableImpl<CardRecord> {
      * The column <code>teensy.card.description</code>.
      */
     public final TableField<CardRecord, String> DESCRIPTION = createField(DSL.name("description"), org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
+
+    /**
+     * The column <code>teensy.card.icon</code>.
+     */
+    public final TableField<CardRecord, String> ICON = createField(DSL.name("icon"), org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>teensy.card.urlId</code>.
@@ -171,11 +176,11 @@ public class Card extends TableImpl<CardRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Integer, String, String, Integer> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Integer, String, String, String, Integer> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

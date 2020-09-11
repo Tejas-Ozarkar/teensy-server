@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS card(
     id int AUTO_INCREMENT,
     title varchar(255),
     description varchar(255),
+    icon varchar(255),
     urlId int,
     PRIMARY KEY (id),
     FOREIGN KEY (urlId) REFERENCES url(id)

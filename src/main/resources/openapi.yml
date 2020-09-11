@@ -3,14 +3,47 @@ info:
   title: Teensy
   description: Tiny Url Generator
   version: 1.0.0
+  contact:
+    name: Tejas Ozarkar
+    email: tejozarkar@gmail.com
 servers:
-  - url: /v2
+  - url: http://localhost:8080
+    description: Local Environment
+  - url: http://teensyapi-env.eba-k2xfeapv.ap-south-1.elasticbeanstalk.com
+    description: Production Environment
 paths:
+  /card:
+    post:
+      summary: Crate New Card
+      operationId: createCard
+      responses:
+        200:
+          description: New Card as Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardRequest'
+  /url/{shortUrl}:
+    get:
+      summary: Get Long Url
+      operationId: getLongUrl
+      responses:
+        200:
+          description: Return Long Url
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UrlResponseDto'
+      parameters:
+        - name: shortUrl
+          in: path
+          description: ID of pet to use
+          required: true
+          schema:
+            type: string
   /url:
     get:
-      security:
-        - bearerAuth: [ ]
-      summary: Get All Tiny Urls
+      summary: Get all Urls by User
       operationId: getUrls
       responses:
         200:
@@ -20,16 +53,16 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/UrlDto'
+                  $ref: '#/components/schemas/UrlResponseDto'
     post:
-      summary:
+      summary: Crate Tiny Url
       operationId: createTinyUrl
       requestBody:
         description: Create Tiny Url
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UrlDto'
+              $ref: '#/components/schemas/UrlRequestDto'
         required: true
       responses:
         200:
@@ -37,7 +70,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/UrlResponseDto'
   /auth/signup:
     post:
       summary:
@@ -55,7 +88,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
+                $ref: '#/components/schemas/GenericResponse'
   /auth/signin:
     post:
       summary:
@@ -77,7 +110,12 @@ paths:
 
 components:
   schemas:
-    UrlDto:
+    UrlRequestDto:
+      type: object
+      properties:
+        longurl:
+          type: string
+    UrlResponseDto:
       type: object
       properties:
         shorturl:
@@ -109,7 +147,18 @@ components:
           type: string
         email:
           type: string
-    ApiResponse:
+    CardRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        shortUrl:
+          type: string
+    GenericResponse:
       type: object
       properties:
         message:

@@ -4,6 +4,7 @@ import com.xeno.teensy.jooq.sample.model.Tables;
 import com.xeno.teensy.jooq.sample.model.tables.pojos.User;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,7 +27,17 @@ public class MyUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), new ArrayList<>());
     }
 
-    private User findUserByUsername(String username){
+    public User getCurrentUserDetails(){
+        String username;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return findUserByUsername(username);
+    }
+    public User findUserByUsername(String username){
         return context
                 .selectFrom(Tables.USER)
                 .where(Tables.USER.USERNAME.eq(username))

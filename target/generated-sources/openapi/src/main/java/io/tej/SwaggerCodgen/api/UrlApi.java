@@ -5,8 +5,8 @@
  */
 package io.tej.SwaggerCodgen.api;
 
-import io.tej.SwaggerCodgen.model.ModelApiResponse;
-import io.tej.SwaggerCodgen.model.UrlDto;
+import io.tej.SwaggerCodgen.model.UrlRequestDto;
+import io.tej.SwaggerCodgen.model.UrlResponseDto;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T00:49:19.168624400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "url", description = "the url API")
@@ -39,28 +39,28 @@ public interface UrlApi {
     }
 
     /**
-     * POST /url : null
+     * POST /url : Crate Tiny Url
      *
-     * @param urlDto Create Tiny Url (required)
+     * @param urlRequestDto Create Tiny Url (required)
      * @return Url Created (status code 200)
      */
-    @ApiOperation(value = "null", nickname = "createTinyUrl", notes = "", response = ModelApiResponse.class, tags={  })
+    @ApiOperation(value = "Crate Tiny Url", nickname = "createTinyUrl", notes = "", response = UrlResponseDto.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Url Created", response = ModelApiResponse.class) })
+        @ApiResponse(code = 200, message = "Url Created", response = UrlResponseDto.class) })
     @RequestMapping(value = "/url",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<ModelApiResponse> _createTinyUrl(@ApiParam(value = "Create Tiny Url" ,required=true )  @Valid @RequestBody UrlDto urlDto) {
-        return createTinyUrl(urlDto);
+    default ResponseEntity<UrlResponseDto> _createTinyUrl(@ApiParam(value = "Create Tiny Url" ,required=true )  @Valid @RequestBody UrlRequestDto urlRequestDto) {
+        return createTinyUrl(urlRequestDto);
     }
 
     // Override this method
-    default  ResponseEntity<ModelApiResponse> createTinyUrl(UrlDto urlDto) {
+    default  ResponseEntity<UrlResponseDto> createTinyUrl(UrlRequestDto urlRequestDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"message\" : \"message\" }";
+                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -72,22 +72,54 @@ public interface UrlApi {
 
 
     /**
-     * GET /url : Get All Tiny Urls
+     * GET /url/{shortUrl} : Get Long Url
+     *
+     * @param shortUrl ID of pet to use (required)
+     * @return Return Long Url (status code 200)
+     */
+    @ApiOperation(value = "Get Long Url", nickname = "getLongUrl", notes = "", response = UrlResponseDto.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Return Long Url", response = UrlResponseDto.class) })
+    @RequestMapping(value = "/url/{shortUrl}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<UrlResponseDto> _getLongUrl(@ApiParam(value = "ID of pet to use",required=true) @PathVariable("shortUrl") String shortUrl) {
+        return getLongUrl(shortUrl);
+    }
+
+    // Override this method
+    default  ResponseEntity<UrlResponseDto> getLongUrl(String shortUrl) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /url : Get all Urls by User
      *
      * @return successful operation (status code 200)
      */
-    @ApiOperation(value = "Get All Tiny Urls", nickname = "getUrls", notes = "", response = UrlDto.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Get all Urls by User", nickname = "getUrls", notes = "", response = UrlResponseDto.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = UrlDto.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "successful operation", response = UrlResponseDto.class, responseContainer = "List") })
     @RequestMapping(value = "/url",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<UrlDto>> _getUrls() {
+    default ResponseEntity<List<UrlResponseDto>> _getUrls() {
         return getUrls();
     }
 
     // Override this method
-    default  ResponseEntity<List<UrlDto>> getUrls() {
+    default  ResponseEntity<List<UrlResponseDto>> getUrls() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
