@@ -15,12 +15,16 @@ com\xeno\teensy\jooq\sample\model\Indexes.class
 com\xeno\teensy\mapper\UserMapper.class
 com\xeno\teensy\mapper\UrlResponseMapper.class
 com\xeno\teensy\controller\AuthController.class
+io\tej\SwaggerCodgen\model\CardResponse.class
 com\xeno\teensy\jooq\sample\model\tables\Url.class
 com\xeno\teensy\jooq\sample\model\tables\records\FlywaySchemaHistoryRecord.class
+io\tej\SwaggerCodgen\model\UpdateCardDto.class
 com\xeno\teensy\jooq\sample\model\tables\pojos\FlywaySchemaHistory.class
 io\tej\SwaggerCodgen\api\UrlApi.class
 com\xeno\teensy\jooq\sample\model\tables\Tribe.class
+com\xeno\teensy\controller\CardController.class
 com\xeno\teensy\utils\UrlUtil.class
+io\tej\SwaggerCodgen\model\CardDto.class
 io\tej\SwaggerCodgen\api\AuthApi.class
 com\xeno\teensy\jwt\JwtRequestFilter.class
 io\tej\SwaggerCodgen\model\CardRequest.class

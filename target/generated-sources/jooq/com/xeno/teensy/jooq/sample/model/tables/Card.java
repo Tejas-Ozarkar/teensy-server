@@ -20,7 +20,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row5;
+import org.jooq.Row6;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Card extends TableImpl<CardRecord> {
 
-    private static final long serialVersionUID = 957675930;
+    private static final long serialVersionUID = 1521778522;
 
     /**
      * The reference instance of <code>teensy.card</code>
@@ -81,6 +81,11 @@ public class Card extends TableImpl<CardRecord> {
      * The column <code>teensy.card.urlId</code>.
      */
     public final TableField<CardRecord, Integer> URLID = createField(DSL.name("urlId"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>teensy.card.groupId</code>.
+     */
+    public final TableField<CardRecord, Integer> GROUPID = createField(DSL.name("groupId"), org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * Create a <code>teensy.card</code> table reference
@@ -122,7 +127,7 @@ public class Card extends TableImpl<CardRecord> {
 
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.CARD_PRIMARY, Indexes.CARD_URLID);
+        return Arrays.<Index>asList(Indexes.CARD_GROUPID, Indexes.CARD_PRIMARY, Indexes.CARD_URLID);
     }
 
     @Override
@@ -142,11 +147,15 @@ public class Card extends TableImpl<CardRecord> {
 
     @Override
     public List<ForeignKey<CardRecord, ?>> getReferences() {
-        return Arrays.<ForeignKey<CardRecord, ?>>asList(Keys.CARD_IBFK_1);
+        return Arrays.<ForeignKey<CardRecord, ?>>asList(Keys.CARD_IBFK_1, Keys.CARD_IBFK_2);
     }
 
     public Url url() {
         return new Url(this, Keys.CARD_IBFK_1);
+    }
+
+    public Tribe tribe() {
+        return new Tribe(this, Keys.CARD_IBFK_2);
     }
 
     @Override
@@ -176,11 +185,11 @@ public class Card extends TableImpl<CardRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row6 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Integer, String, String, String, Integer> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row6<Integer, String, String, String, Integer, Integer> fieldsRow() {
+        return (Row6) super.fieldsRow();
     }
 }

@@ -6,6 +6,9 @@
 package io.tej.SwaggerCodgen.api;
 
 import io.tej.SwaggerCodgen.model.CardRequest;
+import io.tej.SwaggerCodgen.model.CardResponse;
+import io.tej.SwaggerCodgen.model.GenericResponse;
+import io.tej.SwaggerCodgen.model.UpdateCardDto;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:13:29.353524300+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "card", description = "the card API")
@@ -40,24 +43,122 @@ public interface CardApi {
     /**
      * POST /card : Crate New Card
      *
+     * @param cardRequest Create Card (required)
      * @return New Card as Response (status code 200)
      */
-    @ApiOperation(value = "Crate New Card", nickname = "createCard", notes = "", response = CardRequest.class, tags={  })
+    @ApiOperation(value = "Crate New Card", nickname = "createCard", notes = "", response = CardResponse.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "New Card as Response", response = CardRequest.class) })
+        @ApiResponse(code = 200, message = "New Card as Response", response = CardResponse.class) })
     @RequestMapping(value = "/card",
         produces = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<CardRequest> _createCard() {
-        return createCard();
+    default ResponseEntity<CardResponse> _createCard(@ApiParam(value = "Create Card" ,required=true )  @Valid @RequestBody CardRequest cardRequest) {
+        return createCard(cardRequest);
     }
 
     // Override this method
-    default  ResponseEntity<CardRequest> createCard() {
+    default  ResponseEntity<CardResponse> createCard(CardRequest cardRequest) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shortUrl\" : \"shortUrl\", \"icon\" : \"icon\", \"description\" : \"description\", \"title\" : \"title\" }";
+                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * DELETE /card/{cardId} : Delete selected card
+     *
+     * @param cardId Id of card (required)
+     * @return Delete Card (status code 200)
+     */
+    @ApiOperation(value = "Delete selected card", nickname = "deleteCard", notes = "", response = GenericResponse.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Delete Card", response = GenericResponse.class) })
+    @RequestMapping(value = "/card/{cardId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.DELETE)
+    default ResponseEntity<GenericResponse> _deleteCard(@ApiParam(value = "Id of card",required=true) @PathVariable("cardId") Integer cardId) {
+        return deleteCard(cardId);
+    }
+
+    // Override this method
+    default  ResponseEntity<GenericResponse> deleteCard(Integer cardId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"message\" : \"message\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * PATCH /card : Edit the Card
+     *
+     * @param updateCardDto Edit Card (required)
+     * @return Edit the card (status code 200)
+     */
+    @ApiOperation(value = "Edit the Card", nickname = "editCard", notes = "", response = CardResponse.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Edit the card", response = CardResponse.class) })
+    @RequestMapping(value = "/card",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PATCH)
+    default ResponseEntity<CardResponse> _editCard(@ApiParam(value = "Edit Card" ,required=true )  @Valid @RequestBody UpdateCardDto updateCardDto) {
+        return editCard(updateCardDto);
+    }
+
+    // Override this method
+    default  ResponseEntity<CardResponse> editCard(UpdateCardDto updateCardDto) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /card : Get all cards of user
+     *
+     * @return Get user cards (status code 200)
+     */
+    @ApiOperation(value = "Get all cards of user", nickname = "getUserCards", notes = "", response = CardResponse.class, responseContainer = "List", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Get user cards", response = CardResponse.class, responseContainer = "List") })
+    @RequestMapping(value = "/card",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<List<CardResponse>> _getUserCards() {
+        return getUserCards();
+    }
+
+    // Override this method
+    default  ResponseEntity<List<CardResponse>> getUserCards() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

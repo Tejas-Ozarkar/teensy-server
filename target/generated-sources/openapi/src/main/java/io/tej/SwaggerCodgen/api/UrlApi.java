@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:13:29.353524300+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "url", description = "the url API")
@@ -74,7 +74,7 @@ public interface UrlApi {
     /**
      * GET /url/{shortUrl} : Get Long Url
      *
-     * @param shortUrl ID of pet to use (required)
+     * @param shortUrl Short Url (required)
      * @return Return Long Url (status code 200)
      */
     @ApiOperation(value = "Get Long Url", nickname = "getLongUrl", notes = "", response = UrlResponseDto.class, tags={  })
@@ -83,7 +83,7 @@ public interface UrlApi {
     @RequestMapping(value = "/url/{shortUrl}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<UrlResponseDto> _getLongUrl(@ApiParam(value = "ID of pet to use",required=true) @PathVariable("shortUrl") String shortUrl) {
+    default ResponseEntity<UrlResponseDto> _getLongUrl(@ApiParam(value = "Short Url",required=true) @PathVariable("shortUrl") String shortUrl) {
         return getLongUrl(shortUrl);
     }
 

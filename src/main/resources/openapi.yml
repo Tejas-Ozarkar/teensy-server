@@ -16,13 +16,67 @@ paths:
     post:
       summary: Crate New Card
       operationId: createCard
+      requestBody:
+        description: Create Card
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+        required: true
       responses:
         200:
           description: New Card as Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CardRequest'
+                $ref: '#/components/schemas/CardResponse'
+    get:
+      summary: Get all cards of user
+      operationId: getUserCards
+      responses:
+        200:
+          description: Get user cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardResponse'
+    patch:
+      summary: Edit the Card
+      operationId: editCard
+      requestBody:
+        description: Edit Card
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCardDto'
+        required: true
+      responses:
+        200:
+          description: Edit the card
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardResponse'
+  /card/{cardId}:
+    delete:
+      summary: Delete selected card
+      operationId: deleteCard()
+      responses:
+        200:
+          description: Delete Card
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+      parameters:
+        - name: cardId
+          in: path
+          description: Id of card
+          required: true
+          schema:
+            type: integer
   /url/{shortUrl}:
     get:
       summary: Get Long Url
@@ -37,7 +91,7 @@ paths:
       parameters:
         - name: shortUrl
           in: path
-          description: ID of pet to use
+          description: Short Url
           required: true
           schema:
             type: string
@@ -147,7 +201,7 @@ components:
           type: string
         email:
           type: string
-    CardRequest:
+    CardDto:
       type: object
       properties:
         title:
@@ -156,7 +210,37 @@ components:
           type: string
         icon:
           type: string
-        shortUrl:
+    UpdateCardDto:
+      allOf:
+        - $ref: '#/components/schemas/CardDto'
+      type: object
+      properties:
+        longurl:
+          type: string
+    CardRequest:
+      allOf:
+        - $ref: '#/components/schemas/CardDto'
+      type: object
+      properties:
+        longurl:
+          type: string
+        groupid:
+          type: string
+    CardResponse:
+      allOf:
+        - $ref: '#/components/schemas/CardRequest'
+        - $ref: '#/components/schemas/UrlResponseDto'
+      type: object
+      properties:
+        id:
+          type: integer
+        urlid:
+          type: integer
+        groupid:
+          type: integer
+        grouptitle:
+          type: string
+        groupdescription:
           type: string
     GenericResponse:
       type: object

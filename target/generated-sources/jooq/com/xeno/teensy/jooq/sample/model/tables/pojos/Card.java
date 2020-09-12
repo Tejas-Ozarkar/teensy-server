@@ -22,13 +22,14 @@ import javax.annotation.processing.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Card implements Serializable {
 
-    private static final long serialVersionUID = -1504135738;
+    private static final long serialVersionUID = 2053591435;
 
     private Integer id;
     private String  title;
     private String  description;
     private String  icon;
     private Integer urlid;
+    private Integer groupid;
 
     public Card() {}
 
@@ -38,6 +39,7 @@ public class Card implements Serializable {
         this.description = value.description;
         this.icon = value.icon;
         this.urlid = value.urlid;
+        this.groupid = value.groupid;
     }
 
     public Card(
@@ -45,13 +47,15 @@ public class Card implements Serializable {
         String  title,
         String  description,
         String  icon,
-        Integer urlid
+        Integer urlid,
+        Integer groupid
     ) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.icon = icon;
         this.urlid = urlid;
+        this.groupid = groupid;
     }
 
     public Integer getId() {
@@ -99,6 +103,15 @@ public class Card implements Serializable {
         return this;
     }
 
+    public Integer getGroupid() {
+        return this.groupid;
+    }
+
+    public Card setGroupid(Integer groupid) {
+        this.groupid = groupid;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -138,6 +151,12 @@ public class Card implements Serializable {
         }
         else if (!urlid.equals(other.urlid))
             return false;
+        if (groupid == null) {
+            if (other.groupid != null)
+                return false;
+        }
+        else if (!groupid.equals(other.groupid))
+            return false;
         return true;
     }
 
@@ -150,6 +169,7 @@ public class Card implements Serializable {
         result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
         result = prime * result + ((this.icon == null) ? 0 : this.icon.hashCode());
         result = prime * result + ((this.urlid == null) ? 0 : this.urlid.hashCode());
+        result = prime * result + ((this.groupid == null) ? 0 : this.groupid.hashCode());
         return result;
     }
 
@@ -162,6 +182,7 @@ public class Card implements Serializable {
         sb.append(", ").append(description);
         sb.append(", ").append(icon);
         sb.append(", ").append(urlid);
+        sb.append(", ").append(groupid);
 
         sb.append(")");
         return sb.toString();

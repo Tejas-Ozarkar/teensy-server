@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.tej.SwaggerCodgen.model.CardDto;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -12,99 +13,53 @@ import javax.validation.constraints.*;
 /**
  * CardRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:13:29.353524300+05:30[Asia/Calcutta]")
 
-public class CardRequest   {
-  @JsonProperty("title")
-  private String title;
+public class CardRequest extends CardDto  {
+  @JsonProperty("longurl")
+  private String longurl;
 
-  @JsonProperty("description")
-  private String description;
+  @JsonProperty("groupid")
+  private String groupid;
 
-  @JsonProperty("icon")
-  private String icon;
-
-  @JsonProperty("shortUrl")
-  private String shortUrl;
-
-  public CardRequest title(String title) {
-    this.title = title;
+  public CardRequest longurl(String longurl) {
+    this.longurl = longurl;
     return this;
   }
 
   /**
-   * Get title
-   * @return title
+   * Get longurl
+   * @return longurl
   */
   @ApiModelProperty(value = "")
 
 
-  public String getTitle() {
-    return title;
+  public String getLongurl() {
+    return longurl;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setLongurl(String longurl) {
+    this.longurl = longurl;
   }
 
-  public CardRequest description(String description) {
-    this.description = description;
+  public CardRequest groupid(String groupid) {
+    this.groupid = groupid;
     return this;
   }
 
   /**
-   * Get description
-   * @return description
+   * Get groupid
+   * @return groupid
   */
   @ApiModelProperty(value = "")
 
 
-  public String getDescription() {
-    return description;
+  public String getGroupid() {
+    return groupid;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public CardRequest icon(String icon) {
-    this.icon = icon;
-    return this;
-  }
-
-  /**
-   * Get icon
-   * @return icon
-  */
-  @ApiModelProperty(value = "")
-
-
-  public String getIcon() {
-    return icon;
-  }
-
-  public void setIcon(String icon) {
-    this.icon = icon;
-  }
-
-  public CardRequest shortUrl(String shortUrl) {
-    this.shortUrl = shortUrl;
-    return this;
-  }
-
-  /**
-   * Get shortUrl
-   * @return shortUrl
-  */
-  @ApiModelProperty(value = "")
-
-
-  public String getShortUrl() {
-    return shortUrl;
-  }
-
-  public void setShortUrl(String shortUrl) {
-    this.shortUrl = shortUrl;
+  public void setGroupid(String groupid) {
+    this.groupid = groupid;
   }
 
 
@@ -117,26 +72,23 @@ public class CardRequest   {
       return false;
     }
     CardRequest cardRequest = (CardRequest) o;
-    return Objects.equals(this.title, cardRequest.title) &&
-        Objects.equals(this.description, cardRequest.description) &&
-        Objects.equals(this.icon, cardRequest.icon) &&
-        Objects.equals(this.shortUrl, cardRequest.shortUrl);
+    return Objects.equals(this.longurl, cardRequest.longurl) &&
+        Objects.equals(this.groupid, cardRequest.groupid) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, description, icon, shortUrl);
+    return Objects.hash(longurl, groupid, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CardRequest {\n");
-    
-    sb.append("    title: ").append(toIndentedString(title)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
-    sb.append("    shortUrl: ").append(toIndentedString(shortUrl)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("    groupid: ").append(toIndentedString(groupid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

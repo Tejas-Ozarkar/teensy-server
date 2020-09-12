@@ -35,6 +35,7 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index CARD_GROUPID = Indexes0.CARD_GROUPID;
     public static final Index CARD_PRIMARY = Indexes0.CARD_PRIMARY;
     public static final Index CARD_URLID = Indexes0.CARD_URLID;
     public static final Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Indexes0.FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX;
@@ -53,6 +54,7 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index CARD_GROUPID = Internal.createIndex("groupId", Card.CARD, new OrderField[] { Card.CARD.GROUPID }, false);
         public static Index CARD_PRIMARY = Internal.createIndex("PRIMARY", Card.CARD, new OrderField[] { Card.CARD.ID }, true);
         public static Index CARD_URLID = Internal.createIndex("urlId", Card.CARD, new OrderField[] { Card.CARD.URLID }, false);
         public static Index FLYWAY_SCHEMA_HISTORY_FLYWAY_SCHEMA_HISTORY_S_IDX = Internal.createIndex("flyway_schema_history_s_idx", FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, new OrderField[] { FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.SUCCESS }, false);

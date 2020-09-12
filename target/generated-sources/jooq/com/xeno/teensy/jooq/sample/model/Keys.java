@@ -65,6 +65,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = ForeignKeys0.CARD_IBFK_1;
+    public static final ForeignKey<CardRecord, TribeRecord> CARD_IBFK_2 = ForeignKeys0.CARD_IBFK_2;
     public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = ForeignKeys0.TRIBE_IBFK_1;
     public static final ForeignKey<TribeAdminRecord, UserRecord> TRIBE_ADMIN_IBFK_1 = ForeignKeys0.TRIBE_ADMIN_IBFK_1;
     public static final ForeignKey<TribeAdminRecord, TribeRecord> TRIBE_ADMIN_IBFK_2 = ForeignKeys0.TRIBE_ADMIN_IBFK_2;
@@ -93,6 +94,7 @@ public class Keys {
 
     private static class ForeignKeys0 {
         public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_URL_PRIMARY, Card.CARD, "card_ibfk_1", Card.CARD.URLID);
+        public static final ForeignKey<CardRecord, TribeRecord> CARD_IBFK_2 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_TRIBE_PRIMARY, Card.CARD, "card_ibfk_2", Card.CARD.GROUPID);
         public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, Tribe.TRIBE, "tribe_ibfk_1", Tribe.TRIBE.USERID);
         public static final ForeignKey<TribeAdminRecord, UserRecord> TRIBE_ADMIN_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, TribeAdmin.TRIBE_ADMIN, "tribe_admin_ibfk_1", TribeAdmin.TRIBE_ADMIN.USERID);
         public static final ForeignKey<TribeAdminRecord, TribeRecord> TRIBE_ADMIN_IBFK_2 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_TRIBE_PRIMARY, TribeAdmin.TRIBE_ADMIN, "tribe_admin_ibfk_2", TribeAdmin.TRIBE_ADMIN.GROUPID);

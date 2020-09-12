@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * UrlResponseDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-11T15:57:00.878414700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:13:29.353524300+05:30[Asia/Calcutta]")
 
 public class UrlResponseDto   {
   @JsonProperty("shorturl")
