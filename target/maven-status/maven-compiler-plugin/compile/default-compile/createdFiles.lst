@@ -33,9 +33,11 @@ com\xeno\teensy\service\MyUserDetailsService.class
 com\xeno\teensy\jooq\sample\model\tables\records\CardRecord.class
 com\xeno\teensy\service\CardService.class
 com\xeno\teensy\jooq\sample\model\tables\pojos\Url.class
+com\xeno\teensy\mapper\CardMapperImpl.class
 com\xeno\teensy\jooq\sample\model\tables\records\UrlRecord.class
 com\xeno\teensy\controller\ShortenerController.class
 com\xeno\teensy\jooq\sample\model\tables\User.class
+com\xeno\teensy\mapper\CardMapper.class
 com\xeno\teensy\mapper\UserMapperImpl.class
 com\xeno\teensy\jooq\sample\model\Keys$Identities0.class
 com\xeno\teensy\jooq\sample\model\DefaultCatalog.class

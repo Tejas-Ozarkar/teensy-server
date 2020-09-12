@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * UrlRequestDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:13:29.353524300+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:25:46.446289900+05:30[Asia/Calcutta]")
 
 public class UrlRequestDto   {
   @JsonProperty("longurl")
