@@ -12,11 +12,23 @@ import javax.validation.constraints.*;
 /**
  * AuthResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:25:46.446289900+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
 
 public class AuthResponse   {
   @JsonProperty("jwt")
   private String jwt;
+
+  @JsonProperty("username")
+  private String username;
+
+  @JsonProperty("email")
+  private String email;
+
+  @JsonProperty("firstname")
+  private String firstname;
+
+  @JsonProperty("lastname")
+  private String lastname;
 
   public AuthResponse jwt(String jwt) {
     this.jwt = jwt;
@@ -38,6 +50,86 @@ public class AuthResponse   {
     this.jwt = jwt;
   }
 
+  public AuthResponse username(String username) {
+    this.username = username;
+    return this;
+  }
+
+  /**
+   * Get username
+   * @return username
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public AuthResponse email(String email) {
+    this.email = email;
+    return this;
+  }
+
+  /**
+   * Get email
+   * @return email
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public AuthResponse firstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  /**
+   * Get firstname
+   * @return firstname
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getFirstname() {
+    return firstname;
+  }
+
+  public void setFirstname(String firstname) {
+    this.firstname = firstname;
+  }
+
+  public AuthResponse lastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  /**
+   * Get lastname
+   * @return lastname
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getLastname() {
+    return lastname;
+  }
+
+  public void setLastname(String lastname) {
+    this.lastname = lastname;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -48,12 +140,16 @@ public class AuthResponse   {
       return false;
     }
     AuthResponse authResponse = (AuthResponse) o;
-    return Objects.equals(this.jwt, authResponse.jwt);
+    return Objects.equals(this.jwt, authResponse.jwt) &&
+        Objects.equals(this.username, authResponse.username) &&
+        Objects.equals(this.email, authResponse.email) &&
+        Objects.equals(this.firstname, authResponse.firstname) &&
+        Objects.equals(this.lastname, authResponse.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(jwt);
+    return Objects.hash(jwt, username, email, firstname, lastname);
   }
 
   @Override
@@ -62,6 +158,10 @@ public class AuthResponse   {
     sb.append("class AuthResponse {\n");
     
     sb.append("    jwt: ").append(toIndentedString(jwt)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    firstname: ").append(toIndentedString(firstname)).append("\n");
+    sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
     sb.append("}");
     return sb.toString();
   }

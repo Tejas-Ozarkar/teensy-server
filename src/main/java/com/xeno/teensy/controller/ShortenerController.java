@@ -10,10 +10,12 @@ import io.tej.SwaggerCodgen.model.UrlResponseDto;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 public class ShortenerController implements UrlApi {
 
@@ -33,10 +35,4 @@ public class ShortenerController implements UrlApi {
         return ResponseEntity.ok(urlResponseMapper.toResponseDto( service.saveUrl(urlRequestMapper.toRequestEntity(urlDto))));
     }
 
-    @Override
-    public ResponseEntity<List<UrlResponseDto>> getUrls() {
-        return ResponseEntity.ok(urlResponseMapper.toResponseDto(
-                service.getUrls()
-        ));
-    }
 }

@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-12T16:25:46.446289900+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "url", description = "the url API")
@@ -89,37 +89,6 @@ public interface UrlApi {
 
     // Override this method
     default  ResponseEntity<UrlResponseDto> getLongUrl(String shortUrl) {
-        getRequest().ifPresent(request -> {
-            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
-                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
-                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
-                    break;
-                }
-            }
-        });
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-
-    }
-
-
-    /**
-     * GET /url : Get all Urls by User
-     *
-     * @return successful operation (status code 200)
-     */
-    @ApiOperation(value = "Get all Urls by User", nickname = "getUrls", notes = "", response = UrlResponseDto.class, responseContainer = "List", tags={  })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = UrlResponseDto.class, responseContainer = "List") })
-    @RequestMapping(value = "/url",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<List<UrlResponseDto>> _getUrls() {
-        return getUrls();
-    }
-
-    // Override this method
-    default  ResponseEntity<List<UrlResponseDto>> getUrls() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

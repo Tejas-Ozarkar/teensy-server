@@ -5,10 +5,9 @@
  */
 package io.tej.SwaggerCodgen.api;
 
-import io.tej.SwaggerCodgen.model.CardRequest;
-import io.tej.SwaggerCodgen.model.CardResponse;
 import io.tej.SwaggerCodgen.model.GenericResponse;
-import io.tej.SwaggerCodgen.model.UpdateCardDto;
+import io.tej.SwaggerCodgen.model.GroupDto;
+import io.tej.SwaggerCodgen.model.GroupResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,36 +32,36 @@ import java.util.Optional;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
 
 @Validated
-@Api(value = "card", description = "the card API")
-public interface CardApi {
+@Api(value = "group", description = "the group API")
+public interface GroupApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * POST /card : Crate New Card
+     * POST /group : Crate New Group
      *
-     * @param cardRequest Create Card (required)
-     * @return New Card as Response (status code 200)
+     * @param groupDto Create New Group (required)
+     * @return New Group Response (status code 200)
      */
-    @ApiOperation(value = "Crate New Card", nickname = "createCard", notes = "", response = CardResponse.class, tags={  })
+    @ApiOperation(value = "Crate New Group", nickname = "createGroup", notes = "", response = GroupResponse.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "New Card as Response", response = CardResponse.class) })
-    @RequestMapping(value = "/card",
+        @ApiResponse(code = 200, message = "New Group Response", response = GroupResponse.class) })
+    @RequestMapping(value = "/group",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<CardResponse> _createCard(@ApiParam(value = "Create Card" ,required=true )  @Valid @RequestBody CardRequest cardRequest) {
-        return createCard(cardRequest);
+    default ResponseEntity<GroupResponse> _createGroup(@ApiParam(value = "Create New Group" ,required=true )  @Valid @RequestBody GroupDto groupDto) {
+        return createGroup(groupDto);
     }
 
     // Override this method
-    default  ResponseEntity<CardResponse> createCard(CardRequest cardRequest) {
+    default  ResponseEntity<GroupResponse> createGroup(GroupDto groupDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    String exampleString = "{ \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -74,23 +73,23 @@ public interface CardApi {
 
 
     /**
-     * DELETE /card/{cardId} : Delete selected card
+     * DELETE /group : Delete selected card
      *
-     * @param cardId Id of card (required)
-     * @return Delete Card (status code 200)
+     * @param groupId Id of Group (required)
+     * @return Delete Group (status code 200)
      */
-    @ApiOperation(value = "Delete selected card", nickname = "deleteCard", notes = "", response = GenericResponse.class, tags={  })
+    @ApiOperation(value = "Delete selected card", nickname = "deleteGroup", notes = "", response = GenericResponse.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Delete Card", response = GenericResponse.class) })
-    @RequestMapping(value = "/card/{cardId}",
+        @ApiResponse(code = 200, message = "Delete Group", response = GenericResponse.class) })
+    @RequestMapping(value = "/group",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    default ResponseEntity<GenericResponse> _deleteCard(@ApiParam(value = "Id of card",required=true) @PathVariable("cardId") Integer cardId) {
-        return deleteCard(cardId);
+    default ResponseEntity<GenericResponse> _deleteGroup(@NotNull @ApiParam(value = "Id of Group", required = true) @Valid @RequestParam(value = "groupId", required = true) Integer groupId) {
+        return deleteGroup(groupId);
     }
 
     // Override this method
-    default  ResponseEntity<GenericResponse> deleteCard(Integer cardId) {
+    default  ResponseEntity<GenericResponse> deleteGroup(Integer groupId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -106,28 +105,26 @@ public interface CardApi {
 
 
     /**
-     * PATCH /card : Edit the Card
+     * GET /group/all : Get all groups of user
      *
-     * @param updateCardDto Edit Card (required)
-     * @return Edit the card (status code 200)
+     * @return Get all Groups (status code 200)
      */
-    @ApiOperation(value = "Edit the Card", nickname = "editCard", notes = "", response = CardResponse.class, tags={  })
+    @ApiOperation(value = "Get all groups of user", nickname = "getAllGroups", notes = "", response = GroupResponse.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Edit the card", response = CardResponse.class) })
-    @RequestMapping(value = "/card",
+        @ApiResponse(code = 200, message = "Get all Groups", response = GroupResponse.class, responseContainer = "List") })
+    @RequestMapping(value = "/group/all",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.PATCH)
-    default ResponseEntity<CardResponse> _editCard(@ApiParam(value = "Edit Card" ,required=true )  @Valid @RequestBody UpdateCardDto updateCardDto) {
-        return editCard(updateCardDto);
+        method = RequestMethod.GET)
+    default ResponseEntity<List<GroupResponse>> _getAllGroups() {
+        return getAllGroups();
     }
 
     // Override this method
-    default  ResponseEntity<CardResponse> editCard(UpdateCardDto updateCardDto) {
+    default  ResponseEntity<List<GroupResponse>> getAllGroups() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    String exampleString = "{ \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -139,26 +136,26 @@ public interface CardApi {
 
 
     /**
-     * GET /card : Get all cards of user
+     * GET /group : Get all groups of user
      *
      * @return Get user cards (status code 200)
      */
-    @ApiOperation(value = "Get all cards of user", nickname = "getUserCards", notes = "", response = CardResponse.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "Get all groups of user", nickname = "getUserGroups", notes = "", response = GroupResponse.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get user cards", response = CardResponse.class, responseContainer = "List") })
-    @RequestMapping(value = "/card",
+        @ApiResponse(code = 200, message = "Get user cards", response = GroupResponse.class, responseContainer = "List") })
+    @RequestMapping(value = "/group",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<CardResponse>> _getUserCards() {
-        return getUserCards();
+    default ResponseEntity<List<GroupResponse>> _getUserGroups() {
+        return getUserGroups();
     }
 
     // Override this method
-    default  ResponseEntity<List<CardResponse>> getUserCards() {
+    default  ResponseEntity<List<GroupResponse>> getUserGroups() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    String exampleString = "{ \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

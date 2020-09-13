@@ -39,13 +39,12 @@ public class AuthController implements AuthApi {
     public ResponseEntity<AuthResponse> signin(AuthRequest authRequest) {
 
         authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+                      new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authRequest.getUsername());
-
         final String jwt = jwtUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new AuthResponse().jwt(jwt));
+        AuthResponse authResponse = userMapper.toAuthResponse(userDetailsService.findUserByUsername(authRequest.getUsername()));
+        return ResponseEntity.ok(authResponse.jwt(jwt));
     }
 }

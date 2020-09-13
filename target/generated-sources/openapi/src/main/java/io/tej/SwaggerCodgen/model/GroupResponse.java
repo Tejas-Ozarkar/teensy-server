@@ -5,60 +5,38 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.tej.SwaggerCodgen.model.GroupDto;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UrlResponseDto
+ * GroupResponse
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
 
-public class UrlResponseDto   {
-  @JsonProperty("shorturl")
-  private String shorturl;
+public class GroupResponse extends GroupDto  {
+  @JsonProperty("id")
+  private Integer id;
 
-  @JsonProperty("longurl")
-  private String longurl;
-
-  public UrlResponseDto shorturl(String shorturl) {
-    this.shorturl = shorturl;
+  public GroupResponse id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get shorturl
-   * @return shorturl
+   * Get id
+   * @return id
   */
   @ApiModelProperty(value = "")
 
 
-  public String getShorturl() {
-    return shorturl;
+  public Integer getId() {
+    return id;
   }
 
-  public void setShorturl(String shorturl) {
-    this.shorturl = shorturl;
-  }
-
-  public UrlResponseDto longurl(String longurl) {
-    this.longurl = longurl;
-    return this;
-  }
-
-  /**
-   * Get longurl
-   * @return longurl
-  */
-  @ApiModelProperty(value = "")
-
-
-  public String getLongurl() {
-    return longurl;
-  }
-
-  public void setLongurl(String longurl) {
-    this.longurl = longurl;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
 
@@ -70,23 +48,22 @@ public class UrlResponseDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UrlResponseDto urlResponseDto = (UrlResponseDto) o;
-    return Objects.equals(this.shorturl, urlResponseDto.shorturl) &&
-        Objects.equals(this.longurl, urlResponseDto.longurl);
+    GroupResponse groupResponse = (GroupResponse) o;
+    return Objects.equals(this.id, groupResponse.id) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shorturl, longurl);
+    return Objects.hash(id, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UrlResponseDto {\n");
-    
-    sb.append("    shorturl: ").append(toIndentedString(shorturl)).append("\n");
-    sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("class GroupResponse {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

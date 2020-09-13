@@ -1,12 +1,13 @@
 package com.xeno.teensy.mapper;
 
 import com.xeno.teensy.jooq.sample.model.tables.pojos.User;
+import io.tej.SwaggerCodgen.model.AuthResponse;
 import io.tej.SwaggerCodgen.model.UserDto;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-09-12T16:25:53+0530",
+    date = "2020-09-13T23:25:34+0530",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 14.0.1 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -43,5 +44,21 @@ public class UserMapperImpl implements UserMapper {
         user.setPassword( dto.getPassword() );
 
         return user;
+    }
+
+    @Override
+    public AuthResponse toAuthResponse(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        AuthResponse authResponse = new AuthResponse();
+
+        authResponse.setUsername( user.getUsername() );
+        authResponse.setEmail( user.getEmail() );
+        authResponse.setFirstname( user.getFirstname() );
+        authResponse.setLastname( user.getLastname() );
+
+        return authResponse;
     }
 }

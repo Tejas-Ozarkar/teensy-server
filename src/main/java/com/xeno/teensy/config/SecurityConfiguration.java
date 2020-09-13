@@ -29,6 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     JwtRequestFilter jwtRequestFilter;
 
     private String[] patternList={
+            "/",
         "/auth/signup",
         "/auth/signin",
         "/v3/api-docs/**",

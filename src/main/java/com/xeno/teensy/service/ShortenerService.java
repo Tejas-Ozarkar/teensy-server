@@ -37,7 +37,6 @@ public class ShortenerService {
                 .fetchOne()
                 .into(Url.class);
         newUrl.setShorturl(clientUrl+newUrl.getShorturl());
-        System.out.println(newUrl.toString());
         return newUrl;
     }
 
@@ -50,11 +49,9 @@ public class ShortenerService {
     }
 
     public Url getLongUrl(String shortUrl){
-        User user = userDetailsService.getCurrentUserDetails();
         return context
                 .selectFrom(Tables.URL)
                 .where(Tables.URL.SHORTURL.eq(shortUrl))
-                .and(Tables.URL.USERID.eq(user.getId()))
                 .fetchOneInto(Url.class);
     }
 

@@ -12,6 +12,66 @@ servers:
   - url: http://teensyapi-env.eba-k2xfeapv.ap-south-1.elasticbeanstalk.com
     description: Production Environment
 paths:
+  /group/all:
+    get:
+      summary: Get all groups of user
+      operationId: getAllGroups
+      responses:
+        200:
+          description: Get all Groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupResponse'
+  /group:
+    delete:
+      summary: Delete selected card
+      operationId: deleteGroup
+      responses:
+        200:
+          description: Delete Group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+      parameters:
+        - name: groupId
+          in: query
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
+    post:
+      summary: Crate New Group
+      operationId: createGroup
+      requestBody:
+        description: Create New Group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupDto'
+        required: true
+      responses:
+        200:
+          description: New Group Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+    get:
+      summary: Get all groups of user
+      operationId: getUserGroups
+      responses:
+        200:
+          description: Get user cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupResponse'
   /card:
     post:
       summary: Crate New Card
@@ -96,18 +156,6 @@ paths:
           schema:
             type: string
   /url:
-    get:
-      summary: Get all Urls by User
-      operationId: getUrls
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/UrlResponseDto'
     post:
       summary: Crate Tiny Url
       operationId: createTinyUrl
@@ -188,6 +236,14 @@ components:
       properties:
         jwt:
           type: string
+        username:
+          type: string
+        email:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
     UserDto:
       type: object
       properties:
@@ -242,6 +298,20 @@ components:
           type: string
         groupdescription:
           type: string
+    GroupDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+    GroupResponse:
+      allOf:
+        - $ref: '#/components/schemas/GroupDto'
+      type: object
+      properties:
+        id:
+          type: integer
     GenericResponse:
       type: object
       properties:

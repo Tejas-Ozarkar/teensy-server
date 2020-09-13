@@ -10,55 +10,55 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UrlResponseDto
+ * GroupDto
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
 
-public class UrlResponseDto   {
-  @JsonProperty("shorturl")
-  private String shorturl;
+public class GroupDto   {
+  @JsonProperty("title")
+  private String title;
 
-  @JsonProperty("longurl")
-  private String longurl;
+  @JsonProperty("description")
+  private String description;
 
-  public UrlResponseDto shorturl(String shorturl) {
-    this.shorturl = shorturl;
+  public GroupDto title(String title) {
+    this.title = title;
     return this;
   }
 
   /**
-   * Get shorturl
-   * @return shorturl
+   * Get title
+   * @return title
   */
   @ApiModelProperty(value = "")
 
 
-  public String getShorturl() {
-    return shorturl;
+  public String getTitle() {
+    return title;
   }
 
-  public void setShorturl(String shorturl) {
-    this.shorturl = shorturl;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
-  public UrlResponseDto longurl(String longurl) {
-    this.longurl = longurl;
+  public GroupDto description(String description) {
+    this.description = description;
     return this;
   }
 
   /**
-   * Get longurl
-   * @return longurl
+   * Get description
+   * @return description
   */
   @ApiModelProperty(value = "")
 
 
-  public String getLongurl() {
-    return longurl;
+  public String getDescription() {
+    return description;
   }
 
-  public void setLongurl(String longurl) {
-    this.longurl = longurl;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 
@@ -70,23 +70,23 @@ public class UrlResponseDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UrlResponseDto urlResponseDto = (UrlResponseDto) o;
-    return Objects.equals(this.shorturl, urlResponseDto.shorturl) &&
-        Objects.equals(this.longurl, urlResponseDto.longurl);
+    GroupDto groupDto = (GroupDto) o;
+    return Objects.equals(this.title, groupDto.title) &&
+        Objects.equals(this.description, groupDto.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shorturl, longurl);
+    return Objects.hash(title, description);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UrlResponseDto {\n");
+    sb.append("class GroupDto {\n");
     
-    sb.append("    shorturl: ").append(toIndentedString(shorturl)).append("\n");
-    sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }
