@@ -31,6 +31,13 @@ public class GroupService {
         return tribe;
     }
 
+    public Tribe getGroupInfo(int groupId){
+        return context.select(Tables.TRIBE.asterisk())
+                .from(Tables.TRIBE)
+                .where(Tables.TRIBE.ID.eq(groupId))
+                .limit(1)
+                .fetchOneInto(Tribe.class);
+    }
     public void addAdmin(int userId, int groupId){
         context.insertInto(Tables.TRIBE_ADMIN, Tables.TRIBE_ADMIN.USERID, Tables.TRIBE_ADMIN.GROUPID)
                 .values(userId, groupId)

@@ -25,7 +25,26 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GroupResponse'
-  /group:
+  /group/{groupId}:
+    get:
+      tags:
+        - group
+      summary: Get selected card
+      operationId: getGroupInfo
+      responses:
+        200:
+          description: Get Group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupResponse'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
     delete:
       summary: Delete selected card
       operationId: deleteGroup
@@ -38,11 +57,12 @@ paths:
                 $ref: '#/components/schemas/GenericResponse'
       parameters:
         - name: groupId
-          in: query
+          in: path
           description: Id of Group
           required: true
           schema:
             type: integer
+  /group:
     post:
       summary: Crate New Group
       operationId: createGroup
@@ -134,6 +154,26 @@ paths:
         - name: cardId
           in: path
           description: Id of card
+          required: true
+          schema:
+            type: integer
+  /card/{groupId}:
+    get:
+      summary: Delete selected card
+      operationId: getGroupCards
+      responses:
+        200:
+          description: Get Group Cards
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardResponse'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of group
           required: true
           schema:
             type: integer
@@ -281,7 +321,7 @@ components:
         longurl:
           type: string
         groupid:
-          type: string
+          type: integer
     CardResponse:
       allOf:
         - $ref: '#/components/schemas/CardRequest'

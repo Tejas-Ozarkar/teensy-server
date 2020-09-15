@@ -26,8 +26,9 @@ public class CardService {
         Url url = new Url();
         url.setLongurl(cardRequest.getLongurl());
         Url newUrl = shortenerService.saveUrl(url);
-        CardResponse cardResponse = context.insertInto(Tables.CARD, Tables.CARD.TITLE, Tables.CARD.DESCRIPTION, Tables.CARD.ICON, Tables.CARD.URLID)
-                .values(cardRequest.getTitle(), cardRequest.getDescription(), cardRequest.getIcon(), newUrl.getId())
+        CardResponse cardResponse = context
+                .insertInto(Tables.CARD, Tables.CARD.TITLE, Tables.CARD.DESCRIPTION, Tables.CARD.ICON, Tables.CARD.URLID, Tables.CARD.GROUPID)
+                .values(cardRequest.getTitle(), cardRequest.getDescription(), cardRequest.getIcon(), newUrl.getId(),  cardRequest.getGroupid())
                 .returning()
                 .fetchOne()
                 .into(CardResponse.class);
@@ -44,6 +45,14 @@ public class CardService {
                 .from(Tables.CARD)
                 .join(Tables.URL).on(Tables.CARD.URLID.eq(Tables.URL.ID))
                 .leftJoin(Tables.TRIBE).on(Tables.CARD.GROUPID.eq(Tables.TRIBE.ID))
+                .fetchInto(CardResponse.class);
+    }
+
+    public List<CardResponse> getGroupCards(int groupId){
+        return context.select(Tables.CARD.asterisk(), Tables.URL.SHORTURL, Tables.URL.LONGURL)
+                .from(Tables.CARD, Tables.URL)
+                .where(Tables.CARD.URLID.eq(Tables.URL.ID))
+                .and(Tables.CARD.GROUPID.eq(groupId))
                 .fetchInto(CardResponse.class);
     }
 

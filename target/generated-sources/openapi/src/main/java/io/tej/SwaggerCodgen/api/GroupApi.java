@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-14T18:12:03.647756400+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "group", description = "the group API")
@@ -73,7 +73,7 @@ public interface GroupApi {
 
 
     /**
-     * DELETE /group : Delete selected card
+     * DELETE /group/{groupId} : Delete selected card
      *
      * @param groupId Id of Group (required)
      * @return Delete Group (status code 200)
@@ -81,10 +81,10 @@ public interface GroupApi {
     @ApiOperation(value = "Delete selected card", nickname = "deleteGroup", notes = "", response = GenericResponse.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Delete Group", response = GenericResponse.class) })
-    @RequestMapping(value = "/group",
+    @RequestMapping(value = "/group/{groupId}",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    default ResponseEntity<GenericResponse> _deleteGroup(@NotNull @ApiParam(value = "Id of Group", required = true) @Valid @RequestParam(value = "groupId", required = true) Integer groupId) {
+    default ResponseEntity<GenericResponse> _deleteGroup(@ApiParam(value = "Id of Group",required=true) @PathVariable("groupId") Integer groupId) {
         return deleteGroup(groupId);
     }
 
@@ -121,6 +121,38 @@ public interface GroupApi {
 
     // Override this method
     default  ResponseEntity<List<GroupResponse>> getAllGroups() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"id\" : 0 }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /group/{groupId} : Get selected card
+     *
+     * @param groupId Id of Group (required)
+     * @return Get Group (status code 200)
+     */
+    @ApiOperation(value = "Get selected card", nickname = "getGroupInfo", notes = "", response = GroupResponse.class, tags={ "group", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Get Group", response = GroupResponse.class) })
+    @RequestMapping(value = "/group/{groupId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<GroupResponse> _getGroupInfo(@ApiParam(value = "Id of Group",required=true) @PathVariable("groupId") Integer groupId) {
+        return getGroupInfo(groupId);
+    }
+
+    // Override this method
+    default  ResponseEntity<GroupResponse> getGroupInfo(Integer groupId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

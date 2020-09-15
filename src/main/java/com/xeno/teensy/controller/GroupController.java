@@ -23,6 +23,11 @@ public class GroupController implements GroupApi {
     private final GroupMapper groupMapper = Mappers.getMapper(GroupMapper.class);
 
     @Override
+    public ResponseEntity<GroupResponse> getGroupInfo(Integer groupId) {
+        return ResponseEntity.ok(groupMapper.toResponse(groupService.getGroupInfo(groupId)));
+    }
+
+    @Override
     public ResponseEntity<GroupResponse> createGroup(GroupDto groupDto) {
         return ResponseEntity.ok(groupMapper.toResponse(groupService.createGroup(groupMapper.toEntity(groupDto))));
     }

@@ -13,14 +13,14 @@ import javax.validation.constraints.*;
 /**
  * CardRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-14T18:12:03.647756400+05:30[Asia/Calcutta]")
 
 public class CardRequest extends CardDto  {
   @JsonProperty("longurl")
   private String longurl;
 
   @JsonProperty("groupid")
-  private String groupid;
+  private Integer groupid;
 
   public CardRequest longurl(String longurl) {
     this.longurl = longurl;
@@ -42,7 +42,7 @@ public class CardRequest extends CardDto  {
     this.longurl = longurl;
   }
 
-  public CardRequest groupid(String groupid) {
+  public CardRequest groupid(Integer groupid) {
     this.groupid = groupid;
     return this;
   }
@@ -54,11 +54,11 @@ public class CardRequest extends CardDto  {
   @ApiModelProperty(value = "")
 
 
-  public String getGroupid() {
+  public Integer getGroupid() {
     return groupid;
   }
 
-  public void setGroupid(String groupid) {
+  public void setGroupid(Integer groupid) {
     this.groupid = groupid;
   }
 

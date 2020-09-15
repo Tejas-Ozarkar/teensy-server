@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-13T23:25:30.030587700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-14T18:12:03.647756400+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "card", description = "the card API")
@@ -124,6 +124,38 @@ public interface CardApi {
 
     // Override this method
     default  ResponseEntity<CardResponse> editCard(UpdateCardDto updateCardDto) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /card/{groupId} : Delete selected card
+     *
+     * @param groupId Id of group (required)
+     * @return Get Group Cards (status code 200)
+     */
+    @ApiOperation(value = "Delete selected card", nickname = "getGroupCards", notes = "", response = CardResponse.class, responseContainer = "List", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Get Group Cards", response = CardResponse.class, responseContainer = "List") })
+    @RequestMapping(value = "/card/{groupId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<List<CardResponse>> _getGroupCards(@ApiParam(value = "Id of group",required=true) @PathVariable("groupId") Integer groupId) {
+        return getGroupCards(groupId);
+    }
+
+    // Override this method
+    default  ResponseEntity<List<CardResponse>> getGroupCards(Integer groupId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {

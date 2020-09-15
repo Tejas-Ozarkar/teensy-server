@@ -5,8 +5,8 @@
  */
 package io.tej.SwaggerCodgen.api;
 
-import io.tej.SwaggerCodgen.model.UrlRequestDto;
-import io.tej.SwaggerCodgen.model.UrlResponseDto;
+import io.tej.SwaggerCodgen.model.GroupDto;
+import io.tej.SwaggerCodgen.model.GroupResponse;
 import io.swagger.annotations.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,39 +28,39 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-14T18:12:03.647756400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-14T18:10:59.355735400+05:30[Asia/Calcutta]")
 
 @Validated
-@Api(value = "url", description = "the url API")
-public interface UrlApi {
+@Api(value = "query", description = "the query API")
+public interface QueryApi {
 
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
 
     /**
-     * POST /url : Crate Tiny Url
+     * POST /query : Crate New Group
      *
-     * @param urlRequestDto Create Tiny Url (required)
-     * @return Url Created (status code 200)
+     * @param groupDto Create New Group (required)
+     * @return New Group Response (status code 200)
      */
-    @ApiOperation(value = "Crate Tiny Url", nickname = "createTinyUrl", notes = "", response = UrlResponseDto.class, tags={  })
+    @ApiOperation(value = "Crate New Group", nickname = "createGroup", notes = "", response = GroupResponse.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Url Created", response = UrlResponseDto.class) })
-    @RequestMapping(value = "/url",
+        @ApiResponse(code = 200, message = "New Group Response", response = GroupResponse.class) })
+    @RequestMapping(value = "/query",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<UrlResponseDto> _createTinyUrl(@ApiParam(value = "Create Tiny Url" ,required=true )  @Valid @RequestBody UrlRequestDto urlRequestDto) {
-        return createTinyUrl(urlRequestDto);
+    default ResponseEntity<GroupResponse> _createGroup(@ApiParam(value = "Create New Group" ,required=true )  @Valid @RequestBody GroupDto groupDto) {
+        return createGroup(groupDto);
     }
 
     // Override this method
-    default  ResponseEntity<UrlResponseDto> createTinyUrl(UrlRequestDto urlRequestDto) {
+    default  ResponseEntity<GroupResponse> createGroup(GroupDto groupDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
+                    String exampleString = "{ \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -72,27 +72,26 @@ public interface UrlApi {
 
 
     /**
-     * GET /url/{shortUrl} : Get Long Url
+     * GET /query : Get all groups of user
      *
-     * @param shortUrl Short Url (required)
-     * @return Return Long Url (status code 200)
+     * @return Get user cards (status code 200)
      */
-    @ApiOperation(value = "Get Long Url", nickname = "getLongUrl", notes = "", response = UrlResponseDto.class, tags={  })
+    @ApiOperation(value = "Get all groups of user", nickname = "getUserGroups", notes = "", response = GroupResponse.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Return Long Url", response = UrlResponseDto.class) })
-    @RequestMapping(value = "/url/{shortUrl}",
+        @ApiResponse(code = 200, message = "Get user cards", response = GroupResponse.class, responseContainer = "List") })
+    @RequestMapping(value = "/query",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<UrlResponseDto> _getLongUrl(@ApiParam(value = "Short Url",required=true) @PathVariable("shortUrl") String shortUrl) {
-        return getLongUrl(shortUrl);
+    default ResponseEntity<List<GroupResponse>> _getUserGroups() {
+        return getUserGroups();
     }
 
     // Override this method
-    default  ResponseEntity<UrlResponseDto> getLongUrl(String shortUrl) {
+    default  ResponseEntity<List<GroupResponse>> getUserGroups() {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
+                    String exampleString = "{ \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

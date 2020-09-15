@@ -35,4 +35,9 @@ public class CardController implements CardApi {
     public ResponseEntity<CardResponse> editCard(UpdateCardDto updateCardDto) {
         return null;
     }
+
+    @Override
+    public ResponseEntity<List<CardResponse>> getGroupCards(Integer groupId) {
+        return ResponseEntity.ok(cardService.getGroupCards(groupId));
+    }
 }
