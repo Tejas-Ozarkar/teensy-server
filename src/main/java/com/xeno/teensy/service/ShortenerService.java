@@ -24,23 +24,19 @@ public class ShortenerService {
     @Autowired
     MyUserDetailsService userDetailsService;
 
-    @Value("${clientUrl}")
-    private String clientUrl;
 
-    public Url saveUrl(Url url){
-        String shortUrl = Hashing.murmur3_32().hashString(url.getLongurl()+System.currentTimeMillis(), StandardCharsets.UTF_8).toString();
-        User user = userDetailsService.getCurrentUserDetails();
-        Url newUrl =  context
-                .insertInto(Tables.URL,Tables.URL.LONGURL,Tables.URL.SHORTURL,Tables.URL.USERID)
-                .values(url.getLongurl(), shortUrl, user.getId())
+    public Url saveUrl(Url url) {
+        String shortUrl = Hashing.murmur3_32().hashString(url.getLongurl() + System.currentTimeMillis(), StandardCharsets.UTF_8).toString();
+//        User user = userDetailsService.getCurrentUserDetails();
+        return context
+                .insertInto(Tables.URL, Tables.URL.LONGURL, Tables.URL.SHORTURL)
+                .values(url.getLongurl(), shortUrl)
                 .returning()
                 .fetchOne()
                 .into(Url.class);
-        newUrl.setShorturl(clientUrl+newUrl.getShorturl());
-        return newUrl;
     }
 
-    public List<Url> getUrls(){
+    public List<Url> getUrls() {
         User user = userDetailsService.getCurrentUserDetails();
         return context
                 .selectFrom(Tables.URL)
@@ -48,14 +44,14 @@ public class ShortenerService {
                 .fetchInto(Url.class);
     }
 
-    public Url getLongUrl(String shortUrl){
+    public Url getLongUrl(String shortUrl) {
         return context
                 .selectFrom(Tables.URL)
                 .where(Tables.URL.SHORTURL.eq(shortUrl))
                 .fetchOneInto(Url.class);
     }
 
-    public Url editUrl(Url url){
+    public Url editUrl(Url url) {
         return context.update(Tables.URL)
                 .set(Tables.URL.LONGURL, url.getLongurl())
                 .returning()

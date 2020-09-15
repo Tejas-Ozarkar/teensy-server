@@ -1,5 +1,6 @@
 package com.xeno.teensy.controller;
 
+import com.xeno.teensy.jooq.sample.model.tables.pojos.User;
 import com.xeno.teensy.jwt.JwtUtil;
 import com.xeno.teensy.mapper.UserMapper;
 import com.xeno.teensy.service.MyUserDetailsService;
@@ -39,12 +40,18 @@ public class AuthController implements AuthApi {
     public ResponseEntity<AuthResponse> signin(AuthRequest authRequest) {
 
         authenticationManager.authenticate(
-                      new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(authRequest.getUsername());
         final String jwt = jwtUtil.generateToken(userDetails);
         AuthResponse authResponse = userMapper.toAuthResponse(userDetailsService.findUserByUsername(authRequest.getUsername()));
         return ResponseEntity.ok(authResponse.jwt(jwt));
+    }
+
+    @Override
+    public ResponseEntity<UserDto> getUserInfo() {
+        User user = userDetailsService.getCurrentUserDetails();
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }

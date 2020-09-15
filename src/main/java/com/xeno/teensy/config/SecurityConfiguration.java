@@ -31,13 +31,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    private String[] patternList={
-            "/",
-        "/auth/signup",
-        "/auth/signin",
-        "/v3/api-docs/**",
-        "/swagger-ui.html",
-        "/swagger-ui/**"
+    private String[] patternList = {
+            "/url",
+            "/group/all",
+            "/auth/signup",
+            "/auth/signin",
+            "/v3/api-docs/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**"
     };
 
     @Override
@@ -61,13 +62,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception{
+    public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
 
 
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 

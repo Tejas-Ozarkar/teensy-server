@@ -85,7 +85,7 @@ paths:
       operationId: getUserGroups
       responses:
         200:
-          description: Get user cards
+          description: Get user groups
           content:
             application/json:
               schema:
@@ -231,6 +231,20 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenericResponse'
+  /auth/user:
+    get:
+      summary: Get User Info
+      operationId: getUserInfo
+      responses:
+        200:
+          description: Return User Info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDto'
+        401:
+          description: Unauthorized User
+
   /auth/signin:
     post:
       summary:

@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T11:38:46.522400200+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "auth", description = "the auth API")
@@ -39,6 +39,39 @@ public interface AuthApi {
     default Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
     }
+
+    /**
+     * GET /auth/user : Get User Info
+     *
+     * @return Return User Info (status code 200)
+     *         or Unauthorized User (status code 401)
+     */
+    @ApiOperation(value = "Get User Info", nickname = "getUserInfo", notes = "", response = UserDto.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Return User Info", response = UserDto.class),
+        @ApiResponse(code = 401, message = "Unauthorized User") })
+    @RequestMapping(value = "/auth/user",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<UserDto> _getUserInfo() {
+        return getUserInfo();
+    }
+
+    // Override this method
+    default  ResponseEntity<UserDto> getUserInfo() {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"firstname\" : \"firstname\", \"password\" : \"password\", \"email\" : \"email\", \"lastname\" : \"lastname\", \"username\" : \"username\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
 
     /**
      * POST /auth/signin : null
