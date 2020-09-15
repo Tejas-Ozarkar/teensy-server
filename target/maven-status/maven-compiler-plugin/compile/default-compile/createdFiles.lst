@@ -27,6 +27,7 @@ com\xeno\teensy\jooq\sample\model\tables\Tribe.class
 com\xeno\teensy\controller\GroupController.class
 com\xeno\teensy\controller\CardController.class
 com\xeno\teensy\utils\UrlUtil.class
+com\xeno\teensy\config\JwtAuthenticationEntryPoint.class
 io\tej\SwaggerCodgen\model\GroupResponse.class
 io\tej\SwaggerCodgen\model\CardDto.class
 io\tej\SwaggerCodgen\api\AuthApi.class
