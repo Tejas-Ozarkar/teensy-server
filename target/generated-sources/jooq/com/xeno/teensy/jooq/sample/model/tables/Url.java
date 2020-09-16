@@ -20,7 +20,7 @@ import org.jooq.Identity;
 import org.jooq.Index;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -42,7 +42,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Url extends TableImpl<UrlRecord> {
 
-    private static final long serialVersionUID = -1782209108;
+    private static final long serialVersionUID = -785530920;
 
     /**
      * The reference instance of <code>teensy.url</code>
@@ -76,6 +76,11 @@ public class Url extends TableImpl<UrlRecord> {
      * The column <code>teensy.url.userid</code>.
      */
     public final TableField<UrlRecord, Integer> USERID = createField(DSL.name("userid"), org.jooq.impl.SQLDataType.INTEGER, this, "");
+
+    /**
+     * The column <code>teensy.url.expirydate</code>.
+     */
+    public final TableField<UrlRecord, String> EXPIRYDATE = createField(DSL.name("expirydate"), org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * Create a <code>teensy.url</code> table reference
@@ -171,11 +176,11 @@ public class Url extends TableImpl<UrlRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<Integer, String, String, Integer> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<Integer, String, String, Integer, String> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }

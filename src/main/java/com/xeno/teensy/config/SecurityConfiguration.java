@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     private String[] patternList = {
-            "/url",
+            "/url/**",
             "/group/all",
             "/auth/signup",
             "/auth/signin",

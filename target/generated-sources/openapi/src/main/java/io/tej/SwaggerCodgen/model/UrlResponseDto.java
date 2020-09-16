@@ -12,14 +12,40 @@ import javax.validation.constraints.*;
 /**
  * UrlResponseDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 public class UrlResponseDto   {
+  @JsonProperty("id")
+  private Integer id;
+
   @JsonProperty("shorturl")
   private String shorturl;
 
   @JsonProperty("longurl")
   private String longurl;
+
+  @JsonProperty("expirydate")
+  private String expirydate;
+
+  public UrlResponseDto id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
   public UrlResponseDto shorturl(String shorturl) {
     this.shorturl = shorturl;
@@ -61,6 +87,26 @@ public class UrlResponseDto   {
     this.longurl = longurl;
   }
 
+  public UrlResponseDto expirydate(String expirydate) {
+    this.expirydate = expirydate;
+    return this;
+  }
+
+  /**
+   * Get expirydate
+   * @return expirydate
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getExpirydate() {
+    return expirydate;
+  }
+
+  public void setExpirydate(String expirydate) {
+    this.expirydate = expirydate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,13 +117,15 @@ public class UrlResponseDto   {
       return false;
     }
     UrlResponseDto urlResponseDto = (UrlResponseDto) o;
-    return Objects.equals(this.shorturl, urlResponseDto.shorturl) &&
-        Objects.equals(this.longurl, urlResponseDto.longurl);
+    return Objects.equals(this.id, urlResponseDto.id) &&
+        Objects.equals(this.shorturl, urlResponseDto.shorturl) &&
+        Objects.equals(this.longurl, urlResponseDto.longurl) &&
+        Objects.equals(this.expirydate, urlResponseDto.expirydate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(shorturl, longurl);
+    return Objects.hash(id, shorturl, longurl, expirydate);
   }
 
   @Override
@@ -85,8 +133,10 @@ public class UrlResponseDto   {
     StringBuilder sb = new StringBuilder();
     sb.append("class UrlResponseDto {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    shorturl: ").append(toIndentedString(shorturl)).append("\n");
     sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("    expirydate: ").append(toIndentedString(expirydate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

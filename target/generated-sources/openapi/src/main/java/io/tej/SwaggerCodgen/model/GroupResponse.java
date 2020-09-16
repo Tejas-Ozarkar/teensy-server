@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * GroupResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 public class GroupResponse extends GroupDto  {
   @JsonProperty("id")

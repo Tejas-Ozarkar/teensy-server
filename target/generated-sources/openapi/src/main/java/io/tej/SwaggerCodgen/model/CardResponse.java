@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * CardResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 public class CardResponse   {
   @JsonProperty("id")
@@ -46,6 +46,9 @@ public class CardResponse   {
 
   @JsonProperty("longurl")
   private String longurl;
+
+  @JsonProperty("expirydate")
+  private String expirydate;
 
   public CardResponse id(Integer id) {
     this.id = id;
@@ -247,6 +250,26 @@ public class CardResponse   {
     this.longurl = longurl;
   }
 
+  public CardResponse expirydate(String expirydate) {
+    this.expirydate = expirydate;
+    return this;
+  }
+
+  /**
+   * Get expirydate
+   * @return expirydate
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getExpirydate() {
+    return expirydate;
+  }
+
+  public void setExpirydate(String expirydate) {
+    this.expirydate = expirydate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -266,12 +289,13 @@ public class CardResponse   {
         Objects.equals(this.description, cardResponse.description) &&
         Objects.equals(this.icon, cardResponse.icon) &&
         Objects.equals(this.shorturl, cardResponse.shorturl) &&
-        Objects.equals(this.longurl, cardResponse.longurl);
+        Objects.equals(this.longurl, cardResponse.longurl) &&
+        Objects.equals(this.expirydate, cardResponse.expirydate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, urlid, groupid, grouptitle, groupdescription, title, description, icon, shorturl, longurl);
+    return Objects.hash(id, urlid, groupid, grouptitle, groupdescription, title, description, icon, shorturl, longurl, expirydate);
   }
 
   @Override
@@ -289,6 +313,7 @@ public class CardResponse   {
     sb.append("    icon: ").append(toIndentedString(icon)).append("\n");
     sb.append("    shorturl: ").append(toIndentedString(shorturl)).append("\n");
     sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("    expirydate: ").append(toIndentedString(expirydate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

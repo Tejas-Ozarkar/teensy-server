@@ -12,11 +12,14 @@ import javax.validation.constraints.*;
 /**
  * UrlRequestDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 public class UrlRequestDto   {
   @JsonProperty("longurl")
   private String longurl;
+
+  @JsonProperty("expirydate")
+  private String expirydate;
 
   public UrlRequestDto longurl(String longurl) {
     this.longurl = longurl;
@@ -38,6 +41,26 @@ public class UrlRequestDto   {
     this.longurl = longurl;
   }
 
+  public UrlRequestDto expirydate(String expirydate) {
+    this.expirydate = expirydate;
+    return this;
+  }
+
+  /**
+   * Get expirydate
+   * @return expirydate
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getExpirydate() {
+    return expirydate;
+  }
+
+  public void setExpirydate(String expirydate) {
+    this.expirydate = expirydate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -48,12 +71,13 @@ public class UrlRequestDto   {
       return false;
     }
     UrlRequestDto urlRequestDto = (UrlRequestDto) o;
-    return Objects.equals(this.longurl, urlRequestDto.longurl);
+    return Objects.equals(this.longurl, urlRequestDto.longurl) &&
+        Objects.equals(this.expirydate, urlRequestDto.expirydate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(longurl);
+    return Objects.hash(longurl, expirydate);
   }
 
   @Override
@@ -62,6 +86,7 @@ public class UrlRequestDto   {
     sb.append("class UrlRequestDto {\n");
     
     sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
+    sb.append("    expirydate: ").append(toIndentedString(expirydate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

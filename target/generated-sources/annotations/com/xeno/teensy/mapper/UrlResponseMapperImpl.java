@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-09-15T13:16:20+0530",
+    date = "2020-09-16T22:05:48+0530",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 14.0.1 (Oracle Corporation)"
 )
 public class UrlResponseMapperImpl implements UrlResponseMapper {
@@ -21,8 +21,10 @@ public class UrlResponseMapperImpl implements UrlResponseMapper {
 
         UrlResponseDto urlResponseDto = new UrlResponseDto();
 
+        urlResponseDto.setId( url.getId() );
         urlResponseDto.setShorturl( url.getShorturl() );
         urlResponseDto.setLongurl( url.getLongurl() );
+        urlResponseDto.setExpirydate( url.getExpirydate() );
 
         return urlResponseDto;
     }
@@ -35,8 +37,10 @@ public class UrlResponseMapperImpl implements UrlResponseMapper {
 
         Url url = new Url();
 
+        url.setId( dto.getId() );
         url.setShorturl( dto.getShorturl() );
         url.setLongurl( dto.getLongurl() );
+        url.setExpirydate( dto.getExpirydate() );
 
         return url;
     }

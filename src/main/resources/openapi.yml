@@ -271,12 +271,18 @@ components:
       properties:
         longurl:
           type: string
+        expirydate:
+          type: string
     UrlResponseDto:
       type: object
       properties:
+        id:
+          type: integer
         shorturl:
           type: string
         longurl:
+          type: string
+        expirydate:
           type: string
     AuthRequest:
       type: object

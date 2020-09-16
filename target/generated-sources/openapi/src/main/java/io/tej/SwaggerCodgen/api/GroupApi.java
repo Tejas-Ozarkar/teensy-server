@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "group", description = "the group API")
@@ -170,11 +170,11 @@ public interface GroupApi {
     /**
      * GET /group : Get all groups of user
      *
-     * @return Get user cards (status code 200)
+     * @return Get user groups (status code 200)
      */
     @ApiOperation(value = "Get all groups of user", nickname = "getUserGroups", notes = "", response = GroupResponse.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "Get user cards", response = GroupResponse.class, responseContainer = "List") })
+        @ApiResponse(code = 200, message = "Get user groups", response = GroupResponse.class, responseContainer = "List") })
     @RequestMapping(value = "/group",
         produces = { "application/json" }, 
         method = RequestMethod.GET)

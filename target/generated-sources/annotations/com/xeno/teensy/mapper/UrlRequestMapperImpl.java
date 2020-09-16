@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-09-15T13:16:20+0530",
+    date = "2020-09-16T22:05:47+0530",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 14.0.1 (Oracle Corporation)"
 )
 public class UrlRequestMapperImpl implements UrlRequestMapper {
@@ -22,6 +22,7 @@ public class UrlRequestMapperImpl implements UrlRequestMapper {
         UrlRequestDto urlRequestDto = new UrlRequestDto();
 
         urlRequestDto.setLongurl( url.getLongurl() );
+        urlRequestDto.setExpirydate( url.getExpirydate() );
 
         return urlRequestDto;
     }
@@ -35,6 +36,7 @@ public class UrlRequestMapperImpl implements UrlRequestMapper {
         Url url = new Url();
 
         url.setLongurl( dto.getLongurl() );
+        url.setExpirydate( dto.getExpirydate() );
 
         return url;
     }

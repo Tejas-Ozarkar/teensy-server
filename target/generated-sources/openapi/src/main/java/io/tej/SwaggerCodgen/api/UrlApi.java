@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-15T13:16:14.244362400+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-16T22:02:04.991225300+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "url", description = "the url API")
@@ -60,7 +60,7 @@ public interface UrlApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
+                    String exampleString = "{ \"expirydate\" : \"expirydate\", \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\", \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -92,7 +92,7 @@ public interface UrlApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\" }";
+                    String exampleString = "{ \"expirydate\" : \"expirydate\", \"shorturl\" : \"shorturl\", \"longurl\" : \"longurl\", \"id\" : 0 }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

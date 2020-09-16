@@ -22,12 +22,13 @@ import javax.annotation.processing.Generated;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Url implements Serializable {
 
-    private static final long serialVersionUID = -2009104368;
+    private static final long serialVersionUID = -1596032519;
 
     private Integer id;
     private String  shorturl;
     private String  longurl;
     private Integer userid;
+    private String  expirydate;
 
     public Url() {}
 
@@ -36,18 +37,21 @@ public class Url implements Serializable {
         this.shorturl = value.shorturl;
         this.longurl = value.longurl;
         this.userid = value.userid;
+        this.expirydate = value.expirydate;
     }
 
     public Url(
         Integer id,
         String  shorturl,
         String  longurl,
-        Integer userid
+        Integer userid,
+        String  expirydate
     ) {
         this.id = id;
         this.shorturl = shorturl;
         this.longurl = longurl;
         this.userid = userid;
+        this.expirydate = expirydate;
     }
 
     public Integer getId() {
@@ -86,6 +90,15 @@ public class Url implements Serializable {
         return this;
     }
 
+    public String getExpirydate() {
+        return this.expirydate;
+    }
+
+    public Url setExpirydate(String expirydate) {
+        this.expirydate = expirydate;
+        return this;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -119,6 +132,12 @@ public class Url implements Serializable {
         }
         else if (!userid.equals(other.userid))
             return false;
+        if (expirydate == null) {
+            if (other.expirydate != null)
+                return false;
+        }
+        else if (!expirydate.equals(other.expirydate))
+            return false;
         return true;
     }
 
@@ -130,6 +149,7 @@ public class Url implements Serializable {
         result = prime * result + ((this.shorturl == null) ? 0 : this.shorturl.hashCode());
         result = prime * result + ((this.longurl == null) ? 0 : this.longurl.hashCode());
         result = prime * result + ((this.userid == null) ? 0 : this.userid.hashCode());
+        result = prime * result + ((this.expirydate == null) ? 0 : this.expirydate.hashCode());
         return result;
     }
 
@@ -141,6 +161,7 @@ public class Url implements Serializable {
         sb.append(", ").append(shorturl);
         sb.append(", ").append(longurl);
         sb.append(", ").append(userid);
+        sb.append(", ").append(expirydate);
 
         sb.append(")");
         return sb.toString();
