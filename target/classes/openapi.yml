@@ -12,6 +12,99 @@ servers:
   - url: http://teensyapi-env.eba-k2xfeapv.ap-south-1.elasticbeanstalk.com
     description: Production Environment
 paths:
+  /group/admin/{groupId}/{userId}:
+    post:
+      tags:
+        - group
+      summary: Delete group admin
+      operationId: deleteGroupAdmin
+      responses:
+        200:
+          description: Get Group Admins
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
+        - name: userId
+          in: path
+          description: Id of user
+          required: true
+          schema:
+            type: integer
+  /group/isadmin/{groupId}:
+    get:
+      tags:
+        - group
+      summary: Get group admins
+      operationId: isGroupAdmin
+      responses:
+        200:
+          description: Get Group Admins
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IsAdminDto'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
+  /group/admin/{groupId}:
+    post:
+      tags:
+        - group
+      summary: Get group admins
+      operationId: addGroupAdmin
+      requestBody:
+        description: Create New Group
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminDto'
+      responses:
+        200:
+          description: Get Group Admins
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
+    get:
+      tags:
+        - group
+      summary: Get group admins
+      operationId: getGroupAdmins
+      responses:
+        200:
+          description: Get Group Admins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserResponseDto'
+      parameters:
+        - name: groupId
+          in: path
+          description: Id of Group
+          required: true
+          schema:
+            type: integer
   /group/all:
     get:
       summary: Get all groups of user
@@ -266,6 +359,11 @@ paths:
 
 components:
   schemas:
+    AdminDto:
+      type: object
+      properties:
+        email:
+          type: string
     UrlRequestDto:
       type: object
       properties:
@@ -314,6 +412,19 @@ components:
         username:
           type: string
         password:
+          type: string
+        email:
+          type: string
+    UserResponseDto:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstname:
+          type: string
+        lastname:
+          type: string
+        username:
           type: string
         email:
           type: string
@@ -372,6 +483,11 @@ components:
       properties:
         id:
           type: integer
+    IsAdminDto:
+      type: object
+      properties:
+        isadmin:
+          type: boolean
     GenericResponse:
       type: object
       properties:

@@ -4,9 +4,7 @@ import com.xeno.teensy.mapper.GroupMapper;
 import com.xeno.teensy.mapper.UserMapper;
 import com.xeno.teensy.service.GroupService;
 import io.tej.SwaggerCodgen.api.GroupApi;
-import io.tej.SwaggerCodgen.model.GenericResponse;
-import io.tej.SwaggerCodgen.model.GroupDto;
-import io.tej.SwaggerCodgen.model.GroupResponse;
+import io.tej.SwaggerCodgen.model.*;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class GroupController implements GroupApi {
 
@@ -49,5 +48,27 @@ public class GroupController implements GroupApi {
             return ResponseEntity.ok(new GenericResponse().message("Deleted Successfully"));
         }
         return ResponseEntity.status(401).body(new GenericResponse().message("You do not have permission to delete this group"));
+    }
+
+    @Override
+    public ResponseEntity<List<UserResponseDto>> getGroupAdmins(Integer groupId) {
+        return ResponseEntity.ok(groupService.getGroupAdminDetails(groupId));
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> addGroupAdmin(Integer groupId, AdminDto adminDto) {
+        groupService.insertGroupAdmin(groupId, adminDto.getEmail());
+        return ResponseEntity.ok(new GenericResponse().message("Admin Added"));
+    }
+
+    @Override
+    public ResponseEntity<GenericResponse> deleteGroupAdmin(Integer groupId, Integer userId) {
+        groupService.deleteGroupAdmin(userId, groupId);
+        return ResponseEntity.ok(new GenericResponse().message("Admin deleted"));
+    }
+
+    @Override
+    public ResponseEntity<IsAdminDto> isGroupAdmin(Integer groupId) {
+        return ResponseEntity.ok(new IsAdminDto().isadmin(groupService.isGroupAdmin(groupId)));
     }
 }

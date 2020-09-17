@@ -10,11 +10,14 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UserDto
+ * UserResponseDto
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-17T22:31:46.515415700+05:30[Asia/Calcutta]")
 
-public class UserDto   {
+public class UserResponseDto   {
+  @JsonProperty("id")
+  private Integer id;
+
   @JsonProperty("firstname")
   private String firstname;
 
@@ -24,13 +27,30 @@ public class UserDto   {
   @JsonProperty("username")
   private String username;
 
-  @JsonProperty("password")
-  private String password;
-
   @JsonProperty("email")
   private String email;
 
-  public UserDto firstname(String firstname) {
+  public UserResponseDto id(Integer id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public UserResponseDto firstname(String firstname) {
     this.firstname = firstname;
     return this;
   }
@@ -50,7 +70,7 @@ public class UserDto   {
     this.firstname = firstname;
   }
 
-  public UserDto lastname(String lastname) {
+  public UserResponseDto lastname(String lastname) {
     this.lastname = lastname;
     return this;
   }
@@ -70,7 +90,7 @@ public class UserDto   {
     this.lastname = lastname;
   }
 
-  public UserDto username(String username) {
+  public UserResponseDto username(String username) {
     this.username = username;
     return this;
   }
@@ -90,27 +110,7 @@ public class UserDto   {
     this.username = username;
   }
 
-  public UserDto password(String password) {
-    this.password = password;
-    return this;
-  }
-
-  /**
-   * Get password
-   * @return password
-  */
-  @ApiModelProperty(value = "")
-
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public UserDto email(String email) {
+  public UserResponseDto email(String email) {
     this.email = email;
     return this;
   }
@@ -139,28 +139,28 @@ public class UserDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserDto userDto = (UserDto) o;
-    return Objects.equals(this.firstname, userDto.firstname) &&
-        Objects.equals(this.lastname, userDto.lastname) &&
-        Objects.equals(this.username, userDto.username) &&
-        Objects.equals(this.password, userDto.password) &&
-        Objects.equals(this.email, userDto.email);
+    UserResponseDto userResponseDto = (UserResponseDto) o;
+    return Objects.equals(this.id, userResponseDto.id) &&
+        Objects.equals(this.firstname, userResponseDto.firstname) &&
+        Objects.equals(this.lastname, userResponseDto.lastname) &&
+        Objects.equals(this.username, userResponseDto.username) &&
+        Objects.equals(this.email, userResponseDto.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname, username, password, email);
+    return Objects.hash(id, firstname, lastname, username, email);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserDto {\n");
+    sb.append("class UserResponseDto {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstname: ").append(toIndentedString(firstname)).append("\n");
     sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();

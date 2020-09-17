@@ -5,38 +5,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.tej.SwaggerCodgen.model.GroupDto;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * GroupResponse
+ * AdminDto
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-17T22:31:46.515415700+05:30[Asia/Calcutta]")
 
-public class GroupResponse extends GroupDto  {
-  @JsonProperty("id")
-  private Integer id;
+public class AdminDto   {
+  @JsonProperty("email")
+  private String email;
 
-  public GroupResponse id(Integer id) {
-    this.id = id;
+  public AdminDto email(String email) {
+    this.email = email;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get email
+   * @return email
   */
   @ApiModelProperty(value = "")
 
 
-  public Integer getId() {
-    return id;
+  public String getEmail() {
+    return email;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
@@ -48,22 +47,21 @@ public class GroupResponse extends GroupDto  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GroupResponse groupResponse = (GroupResponse) o;
-    return Objects.equals(this.id, groupResponse.id) &&
-        super.equals(o);
+    AdminDto adminDto = (AdminDto) o;
+    return Objects.equals(this.email, adminDto.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, super.hashCode());
+    return Objects.hash(email);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GroupResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class AdminDto {\n");
+    
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }

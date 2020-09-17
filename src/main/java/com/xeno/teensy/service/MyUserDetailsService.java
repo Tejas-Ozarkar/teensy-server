@@ -45,6 +45,14 @@ public class MyUserDetailsService implements UserDetailsService {
                 .fetchOneInto(User.class);
     }
 
+    public User findUserByEmail(String email){
+        return context
+                .selectFrom(Tables.USER)
+                .where(Tables.USER.EMAIL.eq(email))
+                .limit(1)
+                .fetchOneInto(User.class);
+    }
+
     public void signupUser(User user){
         context.insertInto(Tables.USER,Tables.USER.FIRSTNAME,Tables.USER.LASTNAME,
                 Tables.USER.EMAIL,Tables.USER.USERNAME, Tables.USER.PASSWORD)

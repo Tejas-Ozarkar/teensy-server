@@ -5,38 +5,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.tej.SwaggerCodgen.model.GroupDto;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * GroupResponse
+ * IsAdminDto
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-17T22:31:46.515415700+05:30[Asia/Calcutta]")
 
-public class GroupResponse extends GroupDto  {
-  @JsonProperty("id")
-  private Integer id;
+public class IsAdminDto   {
+  @JsonProperty("isadmin")
+  private Boolean isadmin;
 
-  public GroupResponse id(Integer id) {
-    this.id = id;
+  public IsAdminDto isadmin(Boolean isadmin) {
+    this.isadmin = isadmin;
     return this;
   }
 
   /**
-   * Get id
-   * @return id
+   * Get isadmin
+   * @return isadmin
   */
   @ApiModelProperty(value = "")
 
 
-  public Integer getId() {
-    return id;
+  public Boolean getIsadmin() {
+    return isadmin;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setIsadmin(Boolean isadmin) {
+    this.isadmin = isadmin;
   }
 
 
@@ -48,22 +47,21 @@ public class GroupResponse extends GroupDto  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GroupResponse groupResponse = (GroupResponse) o;
-    return Objects.equals(this.id, groupResponse.id) &&
-        super.equals(o);
+    IsAdminDto isAdminDto = (IsAdminDto) o;
+    return Objects.equals(this.isadmin, isAdminDto.isadmin);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, super.hashCode());
+    return Objects.hash(isadmin);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GroupResponse {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("class IsAdminDto {\n");
+    
+    sb.append("    isadmin: ").append(toIndentedString(isadmin)).append("\n");
     sb.append("}");
     return sb.toString();
   }

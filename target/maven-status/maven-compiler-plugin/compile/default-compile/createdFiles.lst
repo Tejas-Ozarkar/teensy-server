@@ -1,2 +1,6 @@
+io\tej\SwaggerCodgen\model\AdminDto.class
+com\xeno\teensy\controller\GroupController.class
+io\tej\SwaggerCodgen\model\IsAdminDto.class
 com\xeno\teensy\controller\CardController.class
+io\tej\SwaggerCodgen\model\UserResponseDto.class
 io\tej\SwaggerCodgen\api\CardApi.class
