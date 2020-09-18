@@ -4,12 +4,14 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Approval;
 import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
 import com.xeno.teensy.jooq.sample.model.tables.Tribe;
 import com.xeno.teensy.jooq.sample.model.tables.TribeAdmin;
 import com.xeno.teensy.jooq.sample.model.tables.Url;
 import com.xeno.teensy.jooq.sample.model.tables.User;
+import com.xeno.teensy.jooq.sample.model.tables.records.ApprovalRecord;
 import com.xeno.teensy.jooq.sample.model.tables.records.CardRecord;
 import com.xeno.teensy.jooq.sample.model.tables.records.FlywaySchemaHistoryRecord;
 import com.xeno.teensy.jooq.sample.model.tables.records.TribeAdminRecord;
@@ -43,6 +45,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<ApprovalRecord, Integer> IDENTITY_APPROVAL = Identities0.IDENTITY_APPROVAL;
     public static final Identity<CardRecord, Integer> IDENTITY_CARD = Identities0.IDENTITY_CARD;
     public static final Identity<TribeRecord, Integer> IDENTITY_TRIBE = Identities0.IDENTITY_TRIBE;
     public static final Identity<TribeAdminRecord, Integer> IDENTITY_TRIBE_ADMIN = Identities0.IDENTITY_TRIBE_ADMIN;
@@ -53,6 +56,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<ApprovalRecord> KEY_APPROVAL_PRIMARY = UniqueKeys0.KEY_APPROVAL_PRIMARY;
     public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = UniqueKeys0.KEY_CARD_PRIMARY;
     public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = UniqueKeys0.KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY;
     public static final UniqueKey<TribeRecord> KEY_TRIBE_PRIMARY = UniqueKeys0.KEY_TRIBE_PRIMARY;
@@ -64,6 +68,9 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<ApprovalRecord, UserRecord> APPROVAL_IBFK_1 = ForeignKeys0.APPROVAL_IBFK_1;
+    public static final ForeignKey<ApprovalRecord, CardRecord> APPROVAL_IBFK_2 = ForeignKeys0.APPROVAL_IBFK_2;
+    public static final ForeignKey<ApprovalRecord, TribeRecord> APPROVAL_IBFK_3 = ForeignKeys0.APPROVAL_IBFK_3;
     public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = ForeignKeys0.CARD_IBFK_1;
     public static final ForeignKey<CardRecord, TribeRecord> CARD_IBFK_2 = ForeignKeys0.CARD_IBFK_2;
     public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = ForeignKeys0.TRIBE_IBFK_1;
@@ -76,6 +83,7 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     private static class Identities0 {
+        public static Identity<ApprovalRecord, Integer> IDENTITY_APPROVAL = Internal.createIdentity(Approval.APPROVAL, Approval.APPROVAL.ID);
         public static Identity<CardRecord, Integer> IDENTITY_CARD = Internal.createIdentity(Card.CARD, Card.CARD.ID);
         public static Identity<TribeRecord, Integer> IDENTITY_TRIBE = Internal.createIdentity(Tribe.TRIBE, Tribe.TRIBE.ID);
         public static Identity<TribeAdminRecord, Integer> IDENTITY_TRIBE_ADMIN = Internal.createIdentity(TribeAdmin.TRIBE_ADMIN, TribeAdmin.TRIBE_ADMIN.ID);
@@ -84,6 +92,7 @@ public class Keys {
     }
 
     private static class UniqueKeys0 {
+        public static final UniqueKey<ApprovalRecord> KEY_APPROVAL_PRIMARY = Internal.createUniqueKey(Approval.APPROVAL, "KEY_approval_PRIMARY", Approval.APPROVAL.ID);
         public static final UniqueKey<CardRecord> KEY_CARD_PRIMARY = Internal.createUniqueKey(Card.CARD, "KEY_card_PRIMARY", Card.CARD.ID);
         public static final UniqueKey<FlywaySchemaHistoryRecord> KEY_FLYWAY_SCHEMA_HISTORY_PRIMARY = Internal.createUniqueKey(FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY, "KEY_flyway_schema_history_PRIMARY", FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY.INSTALLED_RANK);
         public static final UniqueKey<TribeRecord> KEY_TRIBE_PRIMARY = Internal.createUniqueKey(Tribe.TRIBE, "KEY_tribe_PRIMARY", Tribe.TRIBE.ID);
@@ -93,6 +102,9 @@ public class Keys {
     }
 
     private static class ForeignKeys0 {
+        public static final ForeignKey<ApprovalRecord, UserRecord> APPROVAL_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, Approval.APPROVAL, "approval_ibfk_1", Approval.APPROVAL.USERID);
+        public static final ForeignKey<ApprovalRecord, CardRecord> APPROVAL_IBFK_2 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_CARD_PRIMARY, Approval.APPROVAL, "approval_ibfk_2", Approval.APPROVAL.CARDID);
+        public static final ForeignKey<ApprovalRecord, TribeRecord> APPROVAL_IBFK_3 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_TRIBE_PRIMARY, Approval.APPROVAL, "approval_ibfk_3", Approval.APPROVAL.GROUPID);
         public static final ForeignKey<CardRecord, UrlRecord> CARD_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_URL_PRIMARY, Card.CARD, "card_ibfk_1", Card.CARD.URLID);
         public static final ForeignKey<CardRecord, TribeRecord> CARD_IBFK_2 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_TRIBE_PRIMARY, Card.CARD, "card_ibfk_2", Card.CARD.GROUPID);
         public static final ForeignKey<TribeRecord, UserRecord> TRIBE_IBFK_1 = Internal.createForeignKey(com.xeno.teensy.jooq.sample.model.Keys.KEY_USER_PRIMARY, Tribe.TRIBE, "tribe_ibfk_1", Tribe.TRIBE.USERID);

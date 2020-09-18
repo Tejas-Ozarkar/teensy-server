@@ -4,6 +4,7 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Approval;
 import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
 import com.xeno.teensy.jooq.sample.model.tables.Tribe;
@@ -35,6 +36,10 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
+    public static final Index APPROVAL_CARDID = Indexes0.APPROVAL_CARDID;
+    public static final Index APPROVAL_GROUPID = Indexes0.APPROVAL_GROUPID;
+    public static final Index APPROVAL_PRIMARY = Indexes0.APPROVAL_PRIMARY;
+    public static final Index APPROVAL_USERID = Indexes0.APPROVAL_USERID;
     public static final Index CARD_GROUPID = Indexes0.CARD_GROUPID;
     public static final Index CARD_PRIMARY = Indexes0.CARD_PRIMARY;
     public static final Index CARD_URLID = Indexes0.CARD_URLID;
@@ -54,6 +59,10 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
+        public static Index APPROVAL_CARDID = Internal.createIndex("cardId", Approval.APPROVAL, new OrderField[] { Approval.APPROVAL.CARDID }, false);
+        public static Index APPROVAL_GROUPID = Internal.createIndex("groupId", Approval.APPROVAL, new OrderField[] { Approval.APPROVAL.GROUPID }, false);
+        public static Index APPROVAL_PRIMARY = Internal.createIndex("PRIMARY", Approval.APPROVAL, new OrderField[] { Approval.APPROVAL.ID }, true);
+        public static Index APPROVAL_USERID = Internal.createIndex("userId", Approval.APPROVAL, new OrderField[] { Approval.APPROVAL.USERID }, false);
         public static Index CARD_GROUPID = Internal.createIndex("groupId", Card.CARD, new OrderField[] { Card.CARD.GROUPID }, false);
         public static Index CARD_PRIMARY = Internal.createIndex("PRIMARY", Card.CARD, new OrderField[] { Card.CARD.ID }, true);
         public static Index CARD_URLID = Internal.createIndex("urlId", Card.CARD, new OrderField[] { Card.CARD.URLID }, false);

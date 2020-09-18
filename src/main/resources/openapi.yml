@@ -12,6 +12,25 @@ servers:
   - url: http://teensyapi-env.eba-k2xfeapv.ap-south-1.elasticbeanstalk.com
     description: Production Environment
 paths:
+  /approval:
+    post:
+      tags:
+        - group
+      summary: Send approval to group admins
+      operationId: sendApproval
+      requestBody:
+        description: Send approval to admin
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalDto'
+      responses:
+        200:
+          description: Approval Message
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
   /group/admin/{groupId}/{userId}:
     post:
       tags:
@@ -383,6 +402,17 @@ paths:
 
 components:
   schemas:
+    ApprovalDto:
+      allOf:
+        - $ref: '#/components/schemas/CardDto'
+      type: object
+      properties:
+        groupId:
+          type: int
+        cardId:
+          type: int
+        longurl:
+          type: string
     AdminDto:
       type: object
       properties:

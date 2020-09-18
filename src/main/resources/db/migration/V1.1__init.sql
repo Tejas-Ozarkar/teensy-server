@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS url
     shortUrl varchar(255),
     longUrl  varchar(255),
     userid   int,
+    expirydate varchar(255),
     PRIMARY KEY (id),
     FOREIGN KEY (userid) REFERENCES user (id)
 );

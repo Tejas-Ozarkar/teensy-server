@@ -4,6 +4,7 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Approval;
 import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
 import com.xeno.teensy.jooq.sample.model.tables.Tribe;
@@ -26,6 +27,11 @@ import javax.annotation.processing.Generated;
 )
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Tables {
+
+    /**
+     * The table <code>teensy.approval</code>.
+     */
+    public static final Approval APPROVAL = Approval.APPROVAL;
 
     /**
      * The table <code>teensy.card</code>.

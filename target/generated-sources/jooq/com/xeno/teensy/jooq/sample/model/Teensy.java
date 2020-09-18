@@ -4,6 +4,7 @@
 package com.xeno.teensy.jooq.sample.model;
 
 
+import com.xeno.teensy.jooq.sample.model.tables.Approval;
 import com.xeno.teensy.jooq.sample.model.tables.Card;
 import com.xeno.teensy.jooq.sample.model.tables.FlywaySchemaHistory;
 import com.xeno.teensy.jooq.sample.model.tables.Tribe;
@@ -35,12 +36,17 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Teensy extends SchemaImpl {
 
-    private static final long serialVersionUID = -1987557570;
+    private static final long serialVersionUID = 1309334293;
 
     /**
      * The reference instance of <code>teensy</code>
      */
     public static final Teensy TEENSY = new Teensy();
+
+    /**
+     * The table <code>teensy.approval</code>.
+     */
+    public final Approval APPROVAL = com.xeno.teensy.jooq.sample.model.tables.Approval.APPROVAL;
 
     /**
      * The table <code>teensy.card</code>.
@@ -94,6 +100,7 @@ public class Teensy extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
+            Approval.APPROVAL,
             Card.CARD,
             FlywaySchemaHistory.FLYWAY_SCHEMA_HISTORY,
             Tribe.TRIBE,

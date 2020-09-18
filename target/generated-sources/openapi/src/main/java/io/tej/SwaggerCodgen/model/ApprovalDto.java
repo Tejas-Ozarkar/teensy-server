@@ -11,18 +11,61 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * CardRequest
+ * ApprovalDto
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-18T09:30:42.801557+05:30[Asia/Calcutta]")
 
-public class CardRequest extends CardDto  {
+public class ApprovalDto extends CardDto  {
+  @JsonProperty("groupId")
+  private Integer groupId = null;
+
+  @JsonProperty("cardId")
+  private Integer cardId = null;
+
   @JsonProperty("longurl")
   private String longurl;
 
-  @JsonProperty("groupid")
-  private Integer groupid;
+  public ApprovalDto groupId(Integer groupId) {
+    this.groupId = groupId;
+    return this;
+  }
 
-  public CardRequest longurl(String longurl) {
+  /**
+   * Get groupId
+   * @return groupId
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getGroupId() {
+    return groupId;
+  }
+
+  public void setGroupId(Integer groupId) {
+    this.groupId = groupId;
+  }
+
+  public ApprovalDto cardId(Integer cardId) {
+    this.cardId = cardId;
+    return this;
+  }
+
+  /**
+   * Get cardId
+   * @return cardId
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getCardId() {
+    return cardId;
+  }
+
+  public void setCardId(Integer cardId) {
+    this.cardId = cardId;
+  }
+
+  public ApprovalDto longurl(String longurl) {
     this.longurl = longurl;
     return this;
   }
@@ -42,26 +85,6 @@ public class CardRequest extends CardDto  {
     this.longurl = longurl;
   }
 
-  public CardRequest groupid(Integer groupid) {
-    this.groupid = groupid;
-    return this;
-  }
-
-  /**
-   * Get groupid
-   * @return groupid
-  */
-  @ApiModelProperty(value = "")
-
-
-  public Integer getGroupid() {
-    return groupid;
-  }
-
-  public void setGroupid(Integer groupid) {
-    this.groupid = groupid;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,24 +94,26 @@ public class CardRequest extends CardDto  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CardRequest cardRequest = (CardRequest) o;
-    return Objects.equals(this.longurl, cardRequest.longurl) &&
-        Objects.equals(this.groupid, cardRequest.groupid) &&
+    ApprovalDto approvalDto = (ApprovalDto) o;
+    return Objects.equals(this.groupId, approvalDto.groupId) &&
+        Objects.equals(this.cardId, approvalDto.cardId) &&
+        Objects.equals(this.longurl, approvalDto.longurl) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(longurl, groupid, super.hashCode());
+    return Objects.hash(groupId, cardId, longurl, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CardRequest {\n");
+    sb.append("class ApprovalDto {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    groupId: ").append(toIndentedString(groupId)).append("\n");
+    sb.append("    cardId: ").append(toIndentedString(cardId)).append("\n");
     sb.append("    longurl: ").append(toIndentedString(longurl)).append("\n");
-    sb.append("    groupid: ").append(toIndentedString(groupid)).append("\n");
     sb.append("}");
     return sb.toString();
   }
