@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-17T22:31:46.515415700+05:30[Asia/Calcutta]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-18T08:10:20.926734100+05:30[Asia/Calcutta]")
 
 @Validated
 @Api(value = "card", description = "the card API")
@@ -106,24 +106,25 @@ public interface CardApi {
 
 
     /**
-     * PATCH /card : Edit the Card
+     * PATCH /card/{cardId} : Edit the Card
      *
+     * @param cardId Id of card (required)
      * @param updateCardDto Edit Card (required)
      * @return Edit the card (status code 200)
      */
     @ApiOperation(value = "Edit the Card", nickname = "editCard", notes = "", response = CardResponse.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Edit the card", response = CardResponse.class) })
-    @RequestMapping(value = "/card",
+    @RequestMapping(value = "/card/{cardId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PATCH)
-    default ResponseEntity<CardResponse> _editCard(@ApiParam(value = "Edit Card" ,required=true )  @Valid @RequestBody UpdateCardDto updateCardDto) {
-        return editCard(updateCardDto);
+    default ResponseEntity<CardResponse> _editCard(@ApiParam(value = "Id of card",required=true) @PathVariable("cardId") Integer cardId,@ApiParam(value = "Edit Card" ,required=true )  @Valid @RequestBody UpdateCardDto updateCardDto) {
+        return editCard(cardId, updateCardDto);
     }
 
     // Override this method
-    default  ResponseEntity<CardResponse> editCard(UpdateCardDto updateCardDto) {
+    default  ResponseEntity<CardResponse> editCard(Integer cardId, UpdateCardDto updateCardDto) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -139,7 +140,39 @@ public interface CardApi {
 
 
     /**
-     * GET /card/{groupId} : Delete selected card
+     * GET /card/{cardId} : Get Card Info
+     *
+     * @param cardId Id of card (required)
+     * @return Get Card Info (status code 200)
+     */
+    @ApiOperation(value = "Get Card Info", nickname = "getCardInfo", notes = "", response = CardResponse.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "Get Card Info", response = CardResponse.class) })
+    @RequestMapping(value = "/card/{cardId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<CardResponse> _getCardInfo(@ApiParam(value = "Id of card",required=true) @PathVariable("cardId") Integer cardId) {
+        return getCardInfo(cardId);
+    }
+
+    // Override this method
+    default  ResponseEntity<CardResponse> getCardInfo(Integer cardId) {
+        getRequest().ifPresent(request -> {
+            for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
+                if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
+                    String exampleString = "{ \"groupdescription\" : \"groupdescription\", \"groupid\" : 1, \"id\" : 0, \"urlid\" : 6, \"grouptitle\" : \"grouptitle\" }";
+                    ApiUtil.setExampleResponse(request, "application/json", exampleString);
+                    break;
+                }
+            }
+        });
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * GET /card/bygroup/{groupId} : Delete selected card
      *
      * @param groupId Id of group (required)
      * @return Get Group Cards (status code 200)
@@ -147,7 +180,7 @@ public interface CardApi {
     @ApiOperation(value = "Delete selected card", nickname = "getGroupCards", notes = "", response = CardResponse.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "Get Group Cards", response = CardResponse.class, responseContainer = "List") })
-    @RequestMapping(value = "/card/{groupId}",
+    @RequestMapping(value = "/card/bygroup/{groupId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     default ResponseEntity<List<CardResponse>> _getGroupCards(@ApiParam(value = "Id of group",required=true) @PathVariable("groupId") Integer groupId) {

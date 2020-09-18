@@ -5,6 +5,7 @@ import com.xeno.teensy.jooq.sample.model.tables.pojos.Card;
 import com.xeno.teensy.jooq.sample.model.tables.pojos.Url;
 import io.tej.SwaggerCodgen.model.CardRequest;
 import io.tej.SwaggerCodgen.model.CardResponse;
+import io.tej.SwaggerCodgen.model.UpdateCardDto;
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class CardService {
         Url newUrl = shortenerService.saveUrl(url);
         CardResponse cardResponse = context
                 .insertInto(Tables.CARD, Tables.CARD.TITLE, Tables.CARD.DESCRIPTION, Tables.CARD.ICON, Tables.CARD.URLID, Tables.CARD.GROUPID)
-                .values(cardRequest.getTitle(), cardRequest.getDescription(), cardRequest.getIcon(), newUrl.getId(),  cardRequest.getGroupid())
+                .values(cardRequest.getTitle(), cardRequest.getDescription(), cardRequest.getIcon(), newUrl.getId(), cardRequest.getGroupid())
                 .returning()
                 .fetchOne()
                 .into(CardResponse.class);
@@ -48,7 +49,7 @@ public class CardService {
                 .fetchInto(CardResponse.class);
     }
 
-    public List<CardResponse> getGroupCards(int groupId){
+    public List<CardResponse> getGroupCards(int groupId) {
         return context.select(Tables.CARD.asterisk(), Tables.URL.SHORTURL, Tables.URL.LONGURL)
                 .from(Tables.CARD, Tables.URL)
                 .where(Tables.CARD.URLID.eq(Tables.URL.ID))
@@ -57,7 +58,7 @@ public class CardService {
     }
 
     public void deleteCard(int id) {
-        int urlId= context.select(Tables.CARD.URLID).from(Tables.CARD).where(Tables.CARD.ID.eq(id)).fetchOne().into(Integer.class);
+        int urlId = context.select(Tables.CARD.URLID).from(Tables.CARD).where(Tables.CARD.ID.eq(id)).fetchOne().into(Integer.class);
         context.delete(Tables.CARD)
                 .where(Tables.CARD.ID.eq(id))
                 .execute();
@@ -66,19 +67,30 @@ public class CardService {
                 .execute();
     }
 
-    public CardResponse editCard(Card card, Url url){
-        CardResponse cardResponse = context.update(Tables.CARD)
-                .set(row(Tables.CARD.TITLE,Tables.CARD.DESCRIPTION, Tables.CARD.ICON),
+    public CardResponse editCard(int id, UpdateCardDto card) {
+        context.update(Tables.CARD)
+                .set(row(Tables.CARD.TITLE, Tables.CARD.DESCRIPTION, Tables.CARD.ICON),
                         row(card.getTitle(), card.getDescription(), card.getIcon()))
-                .where(Tables.CARD.ID.eq(card.getId()))
-                .returning()
-                .fetchOne()
-                .into(CardResponse.class);
-        url.setId(card.getUrlid());
+                .where(Tables.CARD.ID.eq(id))
+                .execute();
+        CardResponse cardResponse = context.selectFrom(Tables.CARD)
+                .where(Tables.CARD.ID.eq(id))
+                .fetchOneInto(CardResponse.class);
+        Url url = new Url();
+        url.setId(cardResponse.getUrlid());
+        url.setLongurl(card.getLongurl());
         Url updatedUrl = shortenerService.editUrl(url);
         cardResponse.setShorturl(updatedUrl.getShorturl());
         cardResponse.setLongurl(updatedUrl.getLongurl());
         return cardResponse;
+    }
+
+    public CardResponse getCard(int id) {
+        return context.select(Tables.CARD.asterisk(), Tables.URL.SHORTURL, Tables.URL.LONGURL)
+                .from(Tables.CARD, Tables.URL)
+                .where(Tables.CARD.URLID.eq(Tables.URL.ID))
+                .and(Tables.CARD.ID.eq(id))
+                .fetchOneInto(CardResponse.class);
     }
 
 }

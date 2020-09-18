@@ -77,10 +77,11 @@ public class ShortenerService {
     }
 
     public Url editUrl(Url url) {
-        return context.update(Tables.URL)
+        context.update(Tables.URL)
                 .set(Tables.URL.LONGURL, url.getLongurl())
-                .returning()
-                .fetchOne()
-                .into(Url.class);
+                .execute();
+        return context.selectFrom(Tables.URL)
+                .where(Tables.URL.ID.eq(url.getId()))
+                .fetchOneInto(Url.class);
     }
 }
