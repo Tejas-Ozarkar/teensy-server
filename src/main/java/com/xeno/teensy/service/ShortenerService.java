@@ -53,8 +53,7 @@ public class ShortenerService {
                 .selectFrom(Tables.URL)
                 .where(Tables.URL.SHORTURL.eq(shortUrl))
                 .fetchOneInto(Url.class);
-        if (url != null) {
-
+        if (url != null && url.getExpirydate()!=null) {
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss");
             Date expiryDate = new Date();
             Date currentDate = new Date();
