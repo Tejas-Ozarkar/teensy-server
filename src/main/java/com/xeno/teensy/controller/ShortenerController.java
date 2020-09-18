@@ -18,7 +18,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin
 @RestController
 public class ShortenerController implements UrlApi {
 
