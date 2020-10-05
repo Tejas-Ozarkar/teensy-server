@@ -148,7 +148,7 @@
 				</executions>
 				<configuration>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
-					<url>jdbc:mysql://database-2.capxn1xuvaaz.ap-south-1.rds.amazonaws.com:3306/teensy</url>
+					<url>jdbc:mysql://database-3.capxn1xuvaaz.ap-south-1.rds.amazonaws.com:3306/teensy</url>
 					<user>admin</user>
 					<password>admin123</password>
 					<schemas>teensy</schemas>
@@ -173,7 +173,7 @@
 						<configuration>
 							<jdbc>
 								<driver>com.mysql.cj.jdbc.Driver</driver>
-								<url>jdbc:mysql://database-2.capxn1xuvaaz.ap-south-1.rds.amazonaws.com:3306/teensy</url>
+								<url>jdbc:mysql://database-3.capxn1xuvaaz.ap-south-1.rds.amazonaws.com:3306/teensy</url>
 								<user>admin</user>
 								<password>admin123</password>
 							</jdbc>
